@@ -1,0 +1,103 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.HMusic" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">@bool/statusBarForeground</item>
+        <item name="android:windowBackground">@color/colorPageBackground</item>
+    </style>
+
+    <!-- 透明 -->
+    <style name="Theme.HMusic.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/colorTransparency</item>-->
+    </style>
+
+    <!-- 全屏 -->
+    <style name="Theme.HMusic.FullScreen">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- 透明全屏 -->
+    <style name="Theme.HMusic.FullScreen.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/colorTransparency</item>-->
+    </style>
+
+    <!-- 适配启动页的夜间模式 -->
+    <style name="Theme.HMusic.Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorTransparency</item>
+        <item name="colorPrimaryDark">@color/colorTransparency</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/colorTransparency</item>-->
+    </style>
+
+    <style name="style_default_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:background">@drawable/drawableTransparent</item>
+        <item name="android:windowBackground">@drawable/drawableTransparent</item>
+    </style>
+
+<!--    <style name="dialog_animation" parent="android:Animation">-->
+<!--        <item name="android:windowEnterAnimation">@anim/anim_slide_enter_bottom</item>-->
+<!--        <item name="android:windowExitAnimation">@anim/anim_slide_exit_bottom</item>-->
+<!--    </style>-->
+
+    <style name="sub_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:height">28dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textColor">@color/colorTextForeground</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="default_edit_text">
+        <item name="android:textSize">@dimen/defaultTextSize</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/bg_edit_text</item>
+    </style>
+
+    <style name="defaultValueText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingStart">@dimen/defaultPadding</item>
+        <item name="android:paddingEnd">@dimen/defaultPadding</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="switcher">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="switcher_off_color">@color/switchBackground</item>
+        <item name="switcher_on_color">#E5675E</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <drawable name="drawableTransparent">#00000000</drawable>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#969696</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <bool name="statusBarForeground">true</bool>
+
+    <!-- 状态栏背景色 -->
+    <color name="colorStatusBar">#FFFFFF</color>
+
+    <!-- 页面背景色-->
+    <color name="colorPageBackground">#FFFFFF</color>
+
+    <color name="colorMenuBackground">#BFFFFFFF</color>
+
+    <!-- 图标前景色 -->
+    <color name="colorIconForeground">#000000</color>
+    <color name="colorSubIconForeground">#5A5A5A</color>
+
+    <!-- Item 背景色 -->
+    <color name="colorItemBackground">#FFFFFF</color>
+    <color name="colorItemPressedBackground">#F0F0F0</color>
+
+    <!-- 字体前景色 -->
+    <color name="colorTextForeground">#050505</color>
+    <color name="colorSubTextForeground">#787878</color>
+    <color name="colorEditTextBackground">#F5F5F5</color>
+
+    <color name="colorCheckItemBackground">#C8C8C8</color>
+
+    <color name="colorTransparency">#00000000</color>
+
+    <!--    <color name="colorAppThemeColor">#2191FA</color>-->
+    <color name="colorAppThemeColor">#DB2C1F</color>
+    <color name="colorDialogBackground">#FFFFFF</color>
+    <color name="colorHintForeground">#C8C8C8</color>
+
+    <color name="salt_color_song_cover">#EEEEEE</color>
+
+    <color name="colorBlurViewBackground">#CCFFFFFF</color>
+    <color name="miniPlayerBlurViewBackground">#73FFFFFF</color>
+    <color name="colorCommonTextForeground">#969696</color>
+
+    <color name="colorDividerBackground">#E6E6E6</color>
+
+    <color name="colorLyricSubForeground">#4B4B4B</color>
+
+    <color name="highLight">#0091EA</color>
+    <color name="homeWidget">#F5F5F5</color>
+    <color name="switchBackground">#EBEBEB</color>
+
+    <color name="songUnable">#D2D2D2</color>
+
+    <color name="playlistPageBackground">#F7ECEA</color>
+    <color name="menuMainBackground">#FAFAFA</color>
+
+    <color name="lrc_normal_text_color">#6C6C6C</color>
+    <color name="lrc_current_text_color">@color/colorTextForeground</color>
+    <color name="lrc_timeline_text_color">#343434</color>
+    <color name="lrc_timeline_color">#809E9E9E</color>
+    <color name="lrc_time_text_color">#809E9E9E</color>
+
+    <color name="dso_color_lyrics_back">#66FFFFFF</color>
+</resources>
