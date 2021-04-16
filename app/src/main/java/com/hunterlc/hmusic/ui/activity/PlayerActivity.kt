@@ -17,6 +17,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.WindowInsetsController
 import android.view.animation.LinearInterpolator
+import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -154,7 +155,7 @@ class PlayerActivity : SlideBackActivity() {
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             isLandScape = true
             // 横屏隐藏状态栏
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R && MyApplication.mmkv.decodeBool(ConfigUtil.LANDSCAPE_HIDE_BARS, true)) {
                 window.insetsController?.hide(WindowInsetsController.BEHAVIOR_SHOW_BARS_BY_SWIPE)
             }
         } else {
@@ -174,6 +175,16 @@ class PlayerActivity : SlideBackActivity() {
             (it.layoutParams as ConstraintLayout.LayoutParams).apply {
                 topToTop = ConstraintLayout.LayoutParams.PARENT_ID
                 topMargin = getStatusBarHeight(window, this@PlayerActivity)
+            }
+        }
+
+        //横屏状态下移动一点布局，避免贴近状态栏黑条
+        binding.llBase?.let {
+            (it.layoutParams as ConstraintLayout.LayoutParams).apply {
+                if (isLandScape){
+                    marginStart = (getStatusBarHeight(window, this@PlayerActivity) / MyApplication.context.getResources().getDisplayMetrics().density + 0.5f).toInt()
+                }
+
             }
         }
 
@@ -234,8 +245,8 @@ class PlayerActivity : SlideBackActivity() {
                     AnimationUtil.fadeOut(binding.clCd, true)
                     AnimationUtil.fadeOut(binding.clMenu, true)
                     binding.clLyric.visibility = View.VISIBLE
-                    binding.tvSongName.visibility = View.VISIBLE
-                    binding.tvArtistName.visibility = View.VISIBLE
+                    binding.tvSongName?.visibility = View.VISIBLE
+                    binding.tvArtistName?.visibility = View.VISIBLE
                     slideBackEnabled = false
                 }
             }
@@ -253,8 +264,8 @@ class PlayerActivity : SlideBackActivity() {
                         AnimationUtil.fadeIn(binding.clCd)
                         AnimationUtil.fadeIn(binding.clMenu)
                         binding.clLyric.visibility = View.INVISIBLE
-                        binding.tvSongName.visibility = View.INVISIBLE
-                        binding.tvArtistName.visibility = View.INVISIBLE
+                        binding.tvSongName?.visibility = View.INVISIBLE
+                        binding.tvArtistName?.visibility = View.INVISIBLE
                         slideBackEnabled = true
 
                     }
@@ -265,8 +276,8 @@ class PlayerActivity : SlideBackActivity() {
                     AnimationUtil.fadeIn(binding.clCd)
                     AnimationUtil.fadeIn(binding.clMenu)
                     binding.clLyric.visibility = View.INVISIBLE
-                    binding.tvSongName.visibility = View.INVISIBLE
-                    binding.tvArtistName.visibility = View.INVISIBLE
+                    binding.tvSongName?.visibility = View.INVISIBLE
+                    binding.tvArtistName?.visibility = View.INVISIBLE
                     slideBackEnabled = true
                 }
             }
@@ -335,11 +346,11 @@ class PlayerActivity : SlideBackActivity() {
 //                    objectAnimator.start()
                     it?.let {
                         binding.tvName.text = it.name
-                        binding.tvSongName.text = it.name
+                        binding.tvSongName?.text = it.name
                         binding.tvArtist.text = it.artists?.let { artists ->
                             parseArtist(artists as ArrayList<SongsInnerData.ArtistsData>)
                         }
-                        binding.tvArtistName.text = binding.tvArtist.text
+                        binding.tvArtistName?.text = binding.tvArtist.text
                         // 刷新歌词
                         playViewModel.getLyricById(it.id)
 
@@ -499,10 +510,10 @@ class PlayerActivity : SlideBackActivity() {
                     ivNext.setColorFilter(it)
                     tvName.setTextColor(it)
                     tvArtist.setTextColor(it)
-                    tvArtistName.setTextColor(it)
-                    tvSongName.setTextColor(it)
+                    tvArtistName?.setTextColor(it)
+                    tvSongName?.setTextColor(it)
                     ivBack.setColorFilter(it)
-                    ivShare.setColorFilter(it)
+                    ivShare?.setColorFilter(it)
                     diffuseView.setColor(it)
                     lyricView.apply {
                         setCurrentColor(it)

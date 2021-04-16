@@ -34,6 +34,7 @@ class SettingActivity : BaseActivity() {
             switcherSingleColumnPlaylist.setChecked(MyApplication.mmkv.decodeBool(ConfigUtil.SINGLE_COLUMN_USER_PLAYLIST, false))
             switcherPlayOnMobile.setChecked(MyApplication.mmkv.decodeBool(ConfigUtil.PLAY_ON_MOBILE,false))
             switcherDynamicBackground.setChecked(MyApplication.mmkv.decodeBool(ConfigUtil.DYNAMIC_BACKGROUND,false))
+            switcherLandScapeHideBars.setChecked(MyApplication.mmkv.decodeBool(ConfigUtil.LANDSCAPE_HIDE_BARS,true))
         }
 
     }
@@ -61,6 +62,9 @@ class SettingActivity : BaseActivity() {
                 MyApplication.mmkv.encode(ConfigUtil.DYNAMIC_BACKGROUND, it)
             }
 
+            switcherLandScapeHideBars.setOnCheckedChangeListener {
+                MyApplication.mmkv.encode(ConfigUtil.LANDSCAPE_HIDE_BARS,it)
+            }
 
 
         }

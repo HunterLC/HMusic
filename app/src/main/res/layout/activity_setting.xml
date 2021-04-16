@@ -132,6 +132,22 @@
 
             </com.hunterlc.hmusic.widget.ItemLayout>
 
+            <com.hunterlc.hmusic.widget.ItemLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:itemType="item_no"
+                app:text="@string/landscape_hide_bars">
+
+                <com.bitvale.switcher.SwitcherX
+                    android:id="@+id/switcherLandScapeHideBars"
+                    style="@style/switcher"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </com.hunterlc.hmusic.widget.ItemLayout>
+
             <TextView
                 style="@style/sub_title"
                 android:layout_width="match_parent"

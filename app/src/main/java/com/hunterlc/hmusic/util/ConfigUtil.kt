@@ -65,4 +65,7 @@ object ConfigUtil {
     //动态流光背景
     const val DYNAMIC_BACKGROUND = "boolean_dynamic_background"
 
+    //横屏状态下播放界面隐藏状态栏
+    const val LANDSCAPE_HIDE_BARS = "boolean_landscape_hide_bars"
+
 }

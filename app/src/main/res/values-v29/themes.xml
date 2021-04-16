@@ -19,4 +19,11 @@
         <item name="android:enforceNavigationBarContrast">false</item>
 
     </style>
+
+    <!-- 透明全屏 -->
+    <style name="Theme.HMusic.FullScreen.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowBackground">@color/colorTransparency</item>-->
+    </style>
 </resources>

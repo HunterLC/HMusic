@@ -109,4 +109,6 @@
     <string name="dynamic_background">动态流光背景</string>
     <string name="dynamic_background_sub">开启后可能会引起设备性能问题</string>
     <string name="network">网络</string>
+    <string name="landscape_hide_bars">横屏状态隐藏播放界面状态栏</string>
+
 </resources>
