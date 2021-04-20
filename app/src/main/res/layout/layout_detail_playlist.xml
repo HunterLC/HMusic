@@ -17,7 +17,7 @@
         android:text="TextView"
         android:textColor="@color/colorTextForeground"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/ivMore"
+        app:layout_constraintEnd_toStartOf="@+id/ivMv"
         app:layout_constraintStart_toEndOf="@+id/ivCover"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
         android:text="null"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivMore"
+        app:layout_constraintEnd_toStartOf="@+id/ivMv"
         app:layout_constraintStart_toEndOf="@+id/ivHq" />
 
     <TextView
@@ -42,6 +42,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivMv"
+        android:layout_width="56dp"
+        android:layout_height="64dp"
+        android:alpha="0.72"
+        android:padding="14dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivMore"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_mv" />
 
     <ImageView
         android:id="@+id/ivMore"

@@ -81,7 +81,8 @@ data class SongsInnerData(
     @SerializedName("name") val name: String?, // 歌曲名字
     @SerializedName("id") val id: Long, //歌曲id
     @SerializedName("ar") val artists: List<ArtistsData>, //歌曲演唱者
-    @SerializedName("al") val album: AlbumData //歌曲所属专辑信息
+    @SerializedName("al") val album: AlbumData, //歌曲所属专辑信息
+    @SerializedName("mv") val mv: Long? //mv的id
 ): Parcelable {
 
     @Parcelize
@@ -180,4 +181,16 @@ data class Banners(
     @SerializedName("url") val url: String?,
     @SerializedName("bannerId") val bannerId: String,
     @SerializedName("song") val song: SongsInnerData?
+)
+
+@Keep
+data class MvInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("data") var data: MvData
+)
+
+@Keep
+data class MvData(
+    @SerializedName("id") val id: Long,
+    @SerializedName("url") var url: String
 )

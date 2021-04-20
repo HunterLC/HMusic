@@ -140,6 +140,18 @@ object Repository {
         }
     }
 
+    fun getMvUrl(id: Long) = fire(Dispatchers.IO){
+        val mvInfo = CloudMusicNetwork.getMvUrl(id)
+
+        if (mvInfo.code == 200){
+            LogUtil.e("Repository-getMvUrl","获取成功")
+            Result.success(mvInfo.data.url)
+        } else {
+            LogUtil.e("Repository-getMvUrl","获取失败")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

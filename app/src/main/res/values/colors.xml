@@ -38,7 +38,7 @@
 
     <color name="salt_color_song_cover">#EEEEEE</color>
 
-    <color name="colorBlurViewBackground">#CCFFFFFF</color>
+    <color name="colorBlurViewBackground">#FFFFFFFF</color>
     <color name="miniPlayerBlurViewBackground">#73FFFFFF</color>
     <color name="colorCommonTextForeground">#969696</color>
 
@@ -62,4 +62,5 @@
     <color name="lrc_time_text_color">#809E9E9E</color>
 
     <color name="dso_color_lyrics_back">#66FFFFFF</color>
+    <color name="video_back">#000000</color>
 </resources>

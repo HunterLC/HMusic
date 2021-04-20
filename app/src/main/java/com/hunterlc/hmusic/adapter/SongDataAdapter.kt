@@ -21,6 +21,8 @@ import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.data.*
 import com.hunterlc.hmusic.ui.activity.PlayerActivity
 import com.hunterlc.hmusic.ui.activity.PlaylistActivity
+import com.hunterlc.hmusic.ui.activity.SplashActivity
+import com.hunterlc.hmusic.ui.activity.VideoActivity
 import com.hunterlc.hmusic.util.ConfigUtil
 import com.hunterlc.hmusic.util.dp2px
 
@@ -41,6 +43,7 @@ constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDat
         val tvArtist: TextView = view.findViewById(R.id.tvArtist)
         val ivMore: ImageView = view.findViewById(R.id.ivMore)
         val ivHq: ImageView = view.findViewById(R.id.ivHq)
+        val ivMv: ImageView = view.findViewById(R.id.ivMv)
 
         val isAnimation = MyApplication.mmkv.decodeBool(ConfigUtil.PLAYLIST_SCROLL_ANIMATION, true)
     }
@@ -77,6 +80,16 @@ constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDat
                 }
                 tvArtist.text = name.take(name.length - 1)
             }
+            if (song.mv != 0.toLong()){
+                ivMv.visibility = View.VISIBLE
+                ivMv.setOnClickListener {
+                    val intent = Intent(activity, VideoActivity::class.java)
+                    intent.putExtra("mv",song.mv)
+                    activity.startActivity(intent)
+                }
+            } else {
+                ivMv.visibility = View.INVISIBLE
+            }
             ivCover.load(song.album.picUrl) {
                 allowHardware(false)
                 crossfade(true)
@@ -87,6 +100,7 @@ constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDat
             clSong.setOnClickListener {
                 playMusic(song, it)
             }
+
             // 更多点击，每首歌右边的三点菜单
             ivMore.setOnClickListener {
 

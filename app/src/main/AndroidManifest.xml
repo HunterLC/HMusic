@@ -25,7 +25,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HMusic">
-        <activity android:name=".ui.activity.LoginActivity"></activity>
+        <activity android:name=".ui.activity.VideoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.HMusic.FullScreen">
+
+        </activity>
+        <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity
             android:name=".ui.activity.PlayerActivity"
