@@ -14,15 +14,17 @@ class TitleBarLayout(context: Context, attrs: AttributeSet): androidx.constraint
     attrs
 ) {
     private val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TitleBarLayout)
-    val text = typedArray.getString(R.styleable.TitleBarLayout_text)
+    var text = typedArray.getString(R.styleable.TitleBarLayout_text)
 
     private var tvTitleBar: TextView
+    private var btnBack: ImageView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.hunter_titlebar_layout, this)
 
         tvTitleBar = findViewById(R.id.tvTitleBar)
-        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        btnBack = findViewById(R.id.btnBack)
+
 
         tvTitleBar.text = text
 
@@ -38,6 +40,15 @@ class TitleBarLayout(context: Context, attrs: AttributeSet): androidx.constraint
 
     fun setTitleBarText(text: String) {
         tvTitleBar.text = text
+    }
+
+    fun getTitleBarText(): CharSequence? {
+        return tvTitleBar.text
+    }
+
+    fun setTextColor(color: Int){
+        tvTitleBar.setTextColor(color)
+        btnBack.setColorFilter(color)
     }
 
 }

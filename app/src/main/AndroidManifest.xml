@@ -25,10 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HMusic">
+        <!--android:screenOrientation="landscape"-->
         <activity android:name=".ui.activity.VideoActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.HMusic.FullScreen">
-
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.SettingActivity" />

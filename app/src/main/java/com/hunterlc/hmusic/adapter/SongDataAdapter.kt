@@ -85,6 +85,7 @@ constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDat
                 ivMv.setOnClickListener {
                     val intent = Intent(activity, VideoActivity::class.java)
                     intent.putExtra("mv",song.mv)
+                    intent.putExtra("name",song.name)
                     activity.startActivity(intent)
                 }
             } else {

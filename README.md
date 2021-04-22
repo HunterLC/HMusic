@@ -9,6 +9,9 @@ this is a simple music demo for practicing
 - [x] 主页面
 
 # 更新日志
+## 2021-04-22
+1. 优化音乐video播放功能
+2. 
 ## 2021-04-20
 1. 添加音乐video播放功能
 
