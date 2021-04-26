@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.hunterlc.hmusic.MyApplication
-import com.hunterlc.hmusic.repository.Repository
+import com.hunterlc.hmusic.network.repository.Repository
 import com.hunterlc.hmusic.util.ConfigUtil
 
 class MainViewModel: ViewModel() {

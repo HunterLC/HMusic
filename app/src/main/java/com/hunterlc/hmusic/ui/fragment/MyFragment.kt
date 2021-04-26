@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,17 +18,12 @@ import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.adapter.PlaylistAdapter
 import com.hunterlc.hmusic.data.PlaylistData
 import com.hunterlc.hmusic.databinding.FragmentMyBinding
-import com.hunterlc.hmusic.repository.Repository
 import com.hunterlc.hmusic.ui.base.BaseFragment
-import com.hunterlc.hmusic.ui.viewmodel.LoginViewModel
 import com.hunterlc.hmusic.ui.viewmodel.MainViewModel
 import com.hunterlc.hmusic.ui.viewmodel.MyFragmentViewModel
 import com.hunterlc.hmusic.util.AnimationUtil
 import com.hunterlc.hmusic.util.LogUtil
 import com.hunterlc.hmusic.util.runOnMainThread
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.nio.file.Files.size
 
 /***
  * 首页 我的

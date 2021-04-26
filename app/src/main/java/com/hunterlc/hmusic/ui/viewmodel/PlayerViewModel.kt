@@ -5,10 +5,8 @@ import androidx.lifecycle.*
 import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.data.LyricViewData
 import com.hunterlc.hmusic.manager.VolumeManager
-import com.hunterlc.hmusic.repository.Repository
+import com.hunterlc.hmusic.network.repository.Repository
 import com.hunterlc.hmusic.util.ConfigUtil
-import com.hunterlc.hmusic.util.LogUtil
-import com.hunterlc.hmusic.util.runOnMainThread
 
 class PlayerViewModel : ViewModel() {
     companion object {

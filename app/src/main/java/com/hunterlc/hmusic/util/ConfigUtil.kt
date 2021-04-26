@@ -44,9 +44,6 @@ object ConfigUtil {
     // 深色主题
     const val DARK_THEME = "boolean_dark_theme"
 
-    // 是否开启句子推荐
-    const val SENTENCE_RECOMMEND = "boolean_sentence_recommend"
-
     // 自定义背景
     const val APP_THEME_BACKGROUND = "bitmap_app_theme_background"
 
@@ -67,5 +64,11 @@ object ConfigUtil {
 
     //横屏状态下播放界面隐藏状态栏
     const val LANDSCAPE_HIDE_BARS = "boolean_landscape_hide_bars"
+
+    /* 服务保存的当前歌曲 */
+    const val SERVICE_CURRENT_SONG = "service_current_song"
+
+    /* 服务保存的当前歌曲进度 */
+    const val SERVICE_RECOVER_PROGRESS = "service_recover_progress"
 
 }

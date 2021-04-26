@@ -4,10 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.hunterlc.hmusic.data.LoginInfo
-import com.hunterlc.hmusic.data.UserDetailData
-import com.hunterlc.hmusic.repository.Repository
+import com.hunterlc.hmusic.network.repository.Repository
 import com.hunterlc.hmusic.util.LogUtil
-import com.hunterlc.hmusic.util.encodeMD5
 
 class LoginViewModel : ViewModel() {
     val userLoginInfoLiveData = MutableLiveData<LoginInfo>()

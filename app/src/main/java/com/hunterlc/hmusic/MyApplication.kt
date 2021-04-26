@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.hunterlc.hmusic.manager.ActivityManager
 import com.hunterlc.hmusic.manager.UserManager
 import com.hunterlc.hmusic.manager.interfaces.MusicControllerInterface
+import com.hunterlc.hmusic.room.AppDatabase
 import com.hunterlc.hmusic.service.MusicService
 import com.hunterlc.hmusic.service.MusicServiceConnection
 import com.hunterlc.hmusic.util.ConfigUtil
@@ -28,7 +29,8 @@ class MyApplication : Application(){
             it.value = null
         }
         val musicServiceConnection by lazy { MusicServiceConnection() } // 音乐服务连接
-        // 管理
+        // 数据库
+        lateinit var appDatabase: AppDatabase
     }
 
     override fun onCreate() {
@@ -42,6 +44,8 @@ class MyApplication : Application(){
         // MMKV 初始化
         MMKV.initialize(this)
         mmkv = MMKV.defaultMMKV() // MMKV
+        // 初始化数据库
+        appDatabase = AppDatabase.getDatabase(this)
         // 安全检查
         checkSecure()
         if (mmkv.decodeBool(ConfigUtil.DARK_THEME, false)) {

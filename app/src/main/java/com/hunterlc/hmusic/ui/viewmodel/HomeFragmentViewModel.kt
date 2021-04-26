@@ -3,7 +3,7 @@ package com.hunterlc.hmusic.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.hunterlc.hmusic.repository.Repository
+import com.hunterlc.hmusic.network.repository.Repository
 
 class HomeFragmentViewModel : ViewModel() {
     private val _getBannerLiveData = MutableLiveData<Int>().also {

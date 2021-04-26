@@ -469,6 +469,7 @@ class PlayerActivity : SlideBackActivity() {
                 handler.sendEmptyMessageDelayed(MSG_PROGRESS, DELAY_MILLIS)
                 // 更新歌词播放进度
                 binding.lyricView.updateTime(it.toLong())
+
             })
             // 翻译观察
             lyricTranslation.observe(this@PlayerActivity, Observer {

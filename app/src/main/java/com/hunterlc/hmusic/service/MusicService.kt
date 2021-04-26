@@ -8,32 +8,25 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.media.*
-import android.net.Uri
 import android.os.*
 import android.support.v4.media.MediaMetadataCompat
+import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import android.view.KeyEvent
-import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.SimpleTarget
 import com.hunterlc.hmusic.MyApplication
-import com.hunterlc.hmusic.MyApplication.Companion.context
 import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.broadcast.BecomingNoisyReceiver
 import com.hunterlc.hmusic.data.SongsInnerData
 import com.hunterlc.hmusic.manager.interfaces.MusicControllerInterface
-import com.hunterlc.hmusic.repository.Repository
 import com.hunterlc.hmusic.service.base.BaseMediaService
 import com.hunterlc.hmusic.ui.activity.MainActivity
 import com.hunterlc.hmusic.ui.activity.PlayerActivity
 import com.hunterlc.hmusic.util.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.NonCancellable.isActive
 import kotlinx.coroutines.launch
 
 class MusicService : BaseMediaService() {
@@ -45,6 +38,9 @@ class MusicService : BaseMediaService() {
 
     private var mediaSessionCallback: MediaSessionCompat.Callback? = null
     private var mediaSession: MediaSessionCompat? = null
+
+    /* 音频控制器 */
+    private var mediaController: MediaControllerCompat? = null
 
     private var speed = 1f // 默认播放速度，0f 表示暂停
     private var pitch = 1f // 默认音高
@@ -160,6 +156,7 @@ class MusicService : BaseMediaService() {
                     unregisterReceiver(myNoisyAudioStreamReceiver)
                     myNoisyAudioStreamReceiverTag = false
                 }
+
                 //AudioPlayer.get().stopPlayer()
             }
 
@@ -249,6 +246,12 @@ class MusicService : BaseMediaService() {
     inner class MusicController : Binder(), MusicControllerInterface, MediaPlayer.OnPreparedListener,
         MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
 
+        /* 是否是恢复 */
+        private var recover = false
+
+        /* 来自恢复的歌曲进度 */
+        private var recoverProgress = 0
+
         private var songData = MutableLiveData<SongsInnerData?>()
 
         private val isSongPlaying = MutableLiveData<Boolean>().also {
@@ -273,6 +276,8 @@ class MusicService : BaseMediaService() {
 
             isPrepared = false
             songData.value = song
+            // 保存当前播放音乐
+            MyApplication.mmkv.encode(ConfigUtil.SERVICE_CURRENT_SONG, song)
             // 如果 MediaPlayer 已经存在，释放
             if (mediaPlayer != null) {
                 mediaPlayer?.reset()
@@ -310,10 +315,18 @@ class MusicService : BaseMediaService() {
 
         override fun onPrepared(p0: MediaPlayer?) {
             isPrepared = true
-            this.play()
+            mediaController = mediaSession?.sessionToken?.let { it1 -> MediaControllerCompat(this@MusicService, it1) }
+            if (recover) {
+                this.setProgress(recoverProgress)
+                recover = false
+                LogUtil.e("recover","true")
+            } else {
+                this.play()
+                LogUtil.e("recover","false")
+            }
             sendMusicBroadcast()
             refreshNotification()
-            setPlaybackParams()
+//            setPlaybackParams()  //引起软件重启后自动播放
             // 获取封面
             songData.value?.let {
                 it.album.picUrl?.let { it1 ->
@@ -398,6 +411,14 @@ class MusicService : BaseMediaService() {
 
         override fun isPlaying(): MutableLiveData<Boolean> = isSongPlaying
 
+        override fun setRecover(value: Boolean) {
+            recover = value
+        }
+
+        override fun setRecoverProgress(value: Int) {
+            recoverProgress = value
+        }
+
         override fun getDuration(): Int {
             return if (isPrepared) {
                 mediaPlayer?.duration ?: 0
@@ -408,6 +429,12 @@ class MusicService : BaseMediaService() {
 
         override fun getProgress(): Int {
             return if (isPrepared) {
+                //保存歌曲进度
+                MyApplication.musicController.value?.let { mediaPlayer?.currentPosition?.let { it1 ->
+                    MyApplication.mmkv.encode(ConfigUtil.SERVICE_RECOVER_PROGRESS,
+                        it1
+                    )
+                } }
                 mediaPlayer?.currentPosition ?: 0
             } else {
                 0
@@ -518,6 +545,7 @@ class MusicService : BaseMediaService() {
             }
         }
 
+        //倍速？
         private fun setPlaybackParams() {
             if (isPrepared) {
                 mediaPlayer?.let {
@@ -570,6 +598,8 @@ class MusicService : BaseMediaService() {
             }
             return true
         }
+
+
 
     }
 

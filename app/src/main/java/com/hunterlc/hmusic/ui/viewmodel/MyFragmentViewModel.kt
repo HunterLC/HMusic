@@ -3,8 +3,7 @@ package com.hunterlc.hmusic.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.hunterlc.hmusic.repository.Repository
-import com.hunterlc.hmusic.util.*
+import com.hunterlc.hmusic.network.repository.Repository
 
 class MyFragmentViewModel : ViewModel() {
 

@@ -1,10 +1,7 @@
 package com.hunterlc.hmusic.ui.viewmodel
 
 import androidx.lifecycle.*
-import com.hunterlc.hmusic.MyApplication
-import com.hunterlc.hmusic.data.*
-import com.hunterlc.hmusic.repository.Repository
-import com.hunterlc.hmusic.util.runOnMainThread
+import com.hunterlc.hmusic.network.repository.Repository
 
 class PlaylistViewModel : ViewModel() {
     // id

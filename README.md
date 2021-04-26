@@ -9,9 +9,18 @@ this is a simple music demo for practicing
 - [x] 主页面
 
 # 更新日志
+## 2021-04-26
+1. 新增播放记忆功能，启动时记忆上次播放的歌曲、位置以及所对应的歌单，借助Room实现本地可持续化
++ 编译的时候报这个错误，检查半天，发现是Room使用过程中，ArtistDataConverter出现了问题，我在data class里面定义的List,但是在@TypeConverter里面用的ArrayList
+```
+Execution failed for task ':app:kaptDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.gradle.internal.KaptExecution
+   > java.lang.reflect.InvocationTargetException (no error message)
+```
+
 ## 2021-04-22
 1. 优化音乐video播放功能
-2. 
+
 ## 2021-04-20
 1. 添加音乐video播放功能
 

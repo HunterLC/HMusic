@@ -148,4 +148,14 @@ interface MusicControllerInterface {
      */
     fun getPlayerCover(): MutableLiveData<Bitmap?>
 
+    /**
+     * 设置是否是 recover
+     */
+    fun setRecover(value: Boolean)
+
+    /**
+     * 设置是否是 RecoverProgress
+     */
+    fun setRecoverProgress(value: Int)
+
 }
