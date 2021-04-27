@@ -25,6 +25,7 @@ object CloudMusicNetwork {
     private val userService = ServiceCreator.create(UserService::class.java)
     private val bannerService = ServiceCreator.create(BannerService::class.java)
     private val mvService = ServiceCreator.create(MVService::class.java)
+    private val searchService = ServiceCreator.create(SearchService::class.java)
 
     //获取用户歌单列表
     suspend fun getUserPlayList(uid: Long) = playListService.getUserPlayList(uid).await()
@@ -42,8 +43,10 @@ object CloudMusicNetwork {
     suspend fun getUserDetail(uid: Long) = userService.getUserDetail(uid).await()
     //获取首页的Banner
     suspend fun getBanner() = bannerService.getBanner().await()
-
+    //获取MV
     suspend fun getMvUrl(id: Long) = mvService.getMvUrl(id).await()
+    //获取默认搜索关键词
+    suspend fun getSearchDefault() = searchService.getSearchDefault().await()
 
 
     //借助协程技术

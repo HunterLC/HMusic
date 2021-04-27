@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -27,6 +28,7 @@ import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.adapter.SongDataAdapter
 import com.hunterlc.hmusic.databinding.ActivityPlaylistBinding
 import com.hunterlc.hmusic.ui.base.BaseActivity
+import com.hunterlc.hmusic.ui.viewmodel.MainViewModel
 import com.hunterlc.hmusic.ui.viewmodel.PlaylistViewModel
 import com.hunterlc.hmusic.util.ConfigUtil
 import com.hunterlc.hmusic.util.LogUtil
@@ -54,7 +56,8 @@ class PlaylistActivity: BaseActivity() {
 
     private var detailPlaylistAdapter = SongDataAdapter(this)
 
-    private val playlistViewModel: PlaylistViewModel by viewModels()
+    private val playlistViewModel: PlaylistViewModel by lazy { ViewModelProvider(this).get(
+        PlaylistViewModel::class.java)}
 
     override fun initBinding() {
         binding = ActivityPlaylistBinding.inflate(layoutInflater)

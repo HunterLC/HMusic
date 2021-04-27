@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
@@ -34,7 +34,7 @@ class MyFragment: BaseFragment() {
 
     // activity 和 fragment 共享数据
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val myFragmentViewModel by lazy { ViewModelProviders.of(this).get(MyFragmentViewModel::class.java) }
+    private val myFragmentViewModel by lazy { ViewModelProvider(this).get(MyFragmentViewModel::class.java) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMyBinding.inflate(inflater, container, false)

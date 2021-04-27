@@ -138,14 +138,32 @@ object Repository {
         }
     }
 
+    /***
+     * 获取mv
+     */
     fun getMvUrl(id: Long) = fire(Dispatchers.IO){
         val mvInfo = CloudMusicNetwork.getMvUrl(id)
 
         if (mvInfo.code == 200){
-            LogUtil.e("Repository-getMvUrl","获取成功")
+            LogUtil.e("Repository-getMvUrl","获取mv成功")
             Result.success(mvInfo.data.url)
         } else {
-            LogUtil.e("Repository-getMvUrl","获取失败")
+            LogUtil.e("Repository-getMvUrl","获取mv失败")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
+    /***
+     * 获取默认搜索关键词
+     */
+    fun getSearchDefault()= fire(Dispatchers.IO){
+        val searchDefaultInfo = CloudMusicNetwork.getSearchDefault()
+
+        if (searchDefaultInfo.code == 200){
+            LogUtil.e("Repository-getSearchDefault","获取默认搜索关键词成功")
+            Result.success(searchDefaultInfo.data)
+        } else {
+            LogUtil.e("Repository-getSearchDefault","获取默认搜索关键词失败")
             Result.failure(RuntimeException("response of code is not 200"))
         }
     }

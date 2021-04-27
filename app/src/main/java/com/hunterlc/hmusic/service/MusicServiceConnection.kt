@@ -5,7 +5,6 @@ import android.content.ServiceConnection
 import android.os.IBinder
 import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.data.SongsInnerData
-import com.hunterlc.hmusic.manager.interfaces.MusicControllerInterface
 import com.hunterlc.hmusic.room.toSongList
 import com.hunterlc.hmusic.util.ConfigUtil
 import com.hunterlc.hmusic.util.runOnMainThread

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import com.hunterlc.hmusic.MyApplication
@@ -28,7 +29,7 @@ class HomeFragment: BaseFragment() {
     private val binding get() = _binding!!
     // activity 和 fragment 共享数据
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val homeFragmentViewModel by lazy { ViewModelProviders.of(this).get(
+    private val homeFragmentViewModel by lazy { ViewModelProvider(this).get(
         HomeFragmentViewModel::class.java) }
 
     var imageUrls = mutableListOf<String>() //创建空的List

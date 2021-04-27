@@ -1,10 +1,8 @@
 package com.hunterlc.hmusic.ui.base
 
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.animation.LinearInterpolator
 import androidx.lifecycle.Observer
 import coil.load
 import coil.size.ViewSizeResolver
@@ -13,10 +11,7 @@ import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.data.SongsInnerData
 import com.hunterlc.hmusic.databinding.MiniPlayerBinding
 import com.hunterlc.hmusic.manager.ActivityCollector
-import com.hunterlc.hmusic.manager.interfaces.MusicControllerInterface
-import com.hunterlc.hmusic.service.MusicService
 import com.hunterlc.hmusic.util.*
-import okio.`-DeprecatedUtf8`.size
 
 /***
  * 抽象基类 Activity

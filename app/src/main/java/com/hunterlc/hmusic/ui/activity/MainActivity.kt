@@ -25,6 +25,7 @@ import eightbitlab.com.blurview.RenderScriptBlur
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import coil.load
 import coil.size.ViewSizeResolver
@@ -39,6 +40,7 @@ import com.hunterlc.hmusic.ui.fragment.HomeFragment
 import com.hunterlc.hmusic.ui.fragment.MyFragment
 import com.hunterlc.hmusic.ui.viewmodel.LoginViewModel
 import com.hunterlc.hmusic.ui.viewmodel.MyFragmentViewModel
+import com.hunterlc.hmusic.ui.viewmodel.SearchViewModel
 import com.hunterlc.hmusic.util.*
 import com.hunterlc.hmusic.util.cache.ACache
 import kotlinx.android.synthetic.main.menu_main.*
@@ -52,7 +54,7 @@ class MainActivity : BaseActivity() {
     /* 设置改变广播接收 */
     private lateinit var settingChangeReceiver: SettingChangeReceiver
 
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java)}
 
     /***
      * 初始化绑定
@@ -222,7 +224,8 @@ class MainActivity : BaseActivity() {
         binding.apply {
             // 搜索按钮
             ivSearch.setOnClickListener {
-
+                var intent = Intent(this@MainActivity, SearchActivity::class.java)
+                startActivity(intent)
             }
             // 设置按钮
             ivSettings.setOnClickListener {

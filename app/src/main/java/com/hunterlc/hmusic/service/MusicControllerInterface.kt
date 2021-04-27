@@ -1,4 +1,4 @@
-package com.hunterlc.hmusic.manager.interfaces
+package com.hunterlc.hmusic.service
 
 import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData

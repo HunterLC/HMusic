@@ -21,7 +21,6 @@ import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.broadcast.BecomingNoisyReceiver
 import com.hunterlc.hmusic.data.SongsInnerData
-import com.hunterlc.hmusic.manager.interfaces.MusicControllerInterface
 import com.hunterlc.hmusic.service.base.BaseMediaService
 import com.hunterlc.hmusic.ui.activity.MainActivity
 import com.hunterlc.hmusic.ui.activity.PlayerActivity

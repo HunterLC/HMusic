@@ -7,8 +7,6 @@ import com.hunterlc.hmusic.network.repository.Repository
 
 class MyFragmentViewModel : ViewModel() {
 
-
-
     private val userIdLiveData = MutableLiveData<Long>()
 
     var userPlaylistLiveData = Transformations.switchMap(userIdLiveData) { uid ->

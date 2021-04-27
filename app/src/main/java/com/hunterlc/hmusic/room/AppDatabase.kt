@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(
     version = AppDatabase.DATABASE_VERSION,
     entities = [PlayQueueData::class],
-    exportSchema = true
+    exportSchema = false
 )
 
 abstract class AppDatabase : RoomDatabase() {

@@ -7,7 +7,7 @@ import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import com.hunterlc.hmusic.manager.ActivityManager
 import com.hunterlc.hmusic.manager.UserManager
-import com.hunterlc.hmusic.manager.interfaces.MusicControllerInterface
+import com.hunterlc.hmusic.service.MusicControllerInterface
 import com.hunterlc.hmusic.room.AppDatabase
 import com.hunterlc.hmusic.service.MusicService
 import com.hunterlc.hmusic.service.MusicServiceConnection

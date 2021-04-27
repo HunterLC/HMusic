@@ -194,3 +194,15 @@ data class MvData(
     @SerializedName("id") val id: Long,
     @SerializedName("url") var url: String
 )
+
+@Keep
+data class SearchDefaultInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("data") var data: SearchDefaultData
+)
+
+@Keep
+data class SearchDefaultData(
+    @SerializedName("showKeyword") val showKeyword: String,
+    @SerializedName("realkeyword") var realkeyword: String
+)
