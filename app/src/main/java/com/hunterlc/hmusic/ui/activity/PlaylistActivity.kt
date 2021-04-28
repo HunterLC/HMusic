@@ -181,20 +181,5 @@ class PlaylistActivity: BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // 解绑
-        //unregisterReceiver(updatePlaylistReceiver)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //全屏且让背景沉浸到状态栏
-//        val decorView = window.decorView
-//        decorView.systemUiVisibility =
-//            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//        window.statusBarColor = Color.TRANSPARENT
-    }
-
 
 }

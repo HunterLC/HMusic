@@ -75,9 +75,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun initMiniPlayer() {
-        miniPlayer?.let { mini ->
+        miniPlayer.let { mini ->
 
-            mini.apply {
+            mini?.apply {
                 root.setOnClickListener { MyApplication.activityManager.startPlayerActivity(this@BaseActivity) }
                 ivStartOrPause.setOnClickListener { MyApplication.musicController.value?.changePlayState() }
             }
@@ -85,17 +85,17 @@ abstract class BaseActivity : AppCompatActivity() {
                 nullableController?.apply {
                     getPlayingSongData().observe(this@BaseActivity, Observer{ songData ->
                         songData?.let {
-                            mini.tvTitle.text = songData.name + " - " + songData.artists?.let { parseArtist(
+                            mini?.tvTitle?.text = songData.name + " - " + songData.artists.let { parseArtist(
                                 it as ArrayList<SongsInnerData.ArtistsData>
                             ) }
                         }
                     })
                     isPlaying().observe(this@BaseActivity, Observer{
-                        mini.ivStartOrPause.setImageResource(getPlayStateSourceId(it))
+                        mini?.ivStartOrPause?.setImageResource(getPlayStateSourceId(it))
                     })
                     getPlayerCover().observe(this@BaseActivity, Observer{ bitmap ->
-                        mini.ivCover.load(bitmap) {
-                            size(ViewSizeResolver(mini.ivCover))
+                        mini?.ivCover?.load(bitmap) {
+                            size(ViewSizeResolver(mini?.ivCover))
                             error(R.drawable.ic_song_cover)
                         }
                     })

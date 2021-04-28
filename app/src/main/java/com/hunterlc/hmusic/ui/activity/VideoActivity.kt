@@ -72,15 +72,15 @@ class VideoActivity : BaseActivity() {
     }
 
     override fun onDestroy(){
-        super.onDestroy();
-        binding.video.suspend();
+        super.onDestroy()
+        binding.video.suspend()
     }
 
     override fun onBackPressed(){
         if(binding.video.isFullScreen){
-            binding.video.setNoFullScreen();
+            binding.video.setNoFullScreen()
         }else{
-            super.onBackPressed();
+            super.onBackPressed()
         }
     }
 }

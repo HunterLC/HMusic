@@ -24,7 +24,7 @@ class MainViewModel: ViewModel() {
 
     // dp to px
     val scale = MutableLiveData<Float>().also {
-        it.value = MyApplication.context.getResources().getDisplayMetrics().density
+        it.value = MyApplication.context.resources.displayMetrics.density
     }
 
     var userInfoLiveData = Transformations.switchMap(userId) { uid ->

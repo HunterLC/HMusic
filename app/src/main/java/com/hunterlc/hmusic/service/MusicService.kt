@@ -289,7 +289,7 @@ class MusicService : BaseMediaService() {
                 if (!InternetStateUtil.isWifi(MyApplication.context) && !MyApplication.mmkv.decodeBool(ConfigUtil.PLAY_ON_MOBILE, false)) {
                     Toast.makeText(this@MusicService,"移动网络下已禁止播放，请在设置中打开选项（注意流量哦）",Toast.LENGTH_SHORT).show()
                 } else {
-                    val it = "https://music.163.com/song/media/outer/url?id=${song.id.toString()}.mp3"
+                    val it = "https://music.163.com/song/media/outer/url?id=${song.id}.mp3"
                     if ( it != null){
                         //val url = it.getOrNull()?.get(0)?.url
                         setDataSource(it)
@@ -655,7 +655,7 @@ class MusicService : BaseMediaService() {
             .setSmallIcon(R.drawable.ic_music_launcher_foreground)
             .setLargeIcon(bitmap)
             .setContentTitle(song.name)
-            .setContentText(song.artists?.let { it1 -> parseArtist(it1 as ArrayList<SongsInnerData.ArtistsData>) })
+            .setContentText(song.artists.let { it1 -> parseArtist(it1 as ArrayList<SongsInnerData.ArtistsData>) })
             .setContentIntent(getPendingIntentActivity())
             .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", getPendingIntentPrevious())
             .addAction(getPlayIcon(), "play", getPendingIntentPlay())
@@ -672,7 +672,7 @@ class MusicService : BaseMediaService() {
             setMetadata(
                 MediaMetadataCompat.Builder().apply {
                     putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.name)
-                    putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artists?.parse())
+                    putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artists.parse())
                     putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         putLong(

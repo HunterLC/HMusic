@@ -111,4 +111,6 @@
     <string name="network">Network</string>
     <string name="landscape_hide_bars">Hide status bar of playing interface in horizontal screen state</string>
     <string name="clear">Clear</string>
+    <string name="track">Track</string>
+    <string name="singer">Singer</string>
 </resources>

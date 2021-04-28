@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/clSong"
+android:layout_width="match_parent"
+android:layout_height="120dp"
+android:background="?attr/selectableItemBackground">
+
+<View
+    android:visibility="gone"
+    android:id="@+id/viewPlaying"
+    android:layout_width="2dp"
+    android:layout_height="48dp"
+    android:background="@color/highLight"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<ImageView
+    android:id="@+id/ivSinger"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    android:layout_marginStart="16dp"
+    android:scaleType="centerCrop"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="ContentDescription" />
+
+<TextView
+    android:id="@+id/tvName"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:singleLine="true"
+    android:text="Text"
+    android:textColor="@color/colorTextForeground"
+    android:textSize="15dp"
+    app:layout_constraintBottom_toTopOf="@+id/llSub"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/ivSinger"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="SpUsage" />
+
+<TextView
+    android:id="@+id/tvTransName"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:singleLine="true"
+    android:textColor="@color/colorTextForeground"
+    android:textSize="15dp"
+    app:layout_constraintBottom_toTopOf="@+id/llSub"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/ivSinger"
+    app:layout_constraintTop_toBottomOf="@+id/tvName"
+    tools:ignore="SpUsage" />
+
+<LinearLayout
+    android:id="@+id/llSub"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/ivSinger"
+    app:layout_constraintTop_toBottomOf="@+id/tvTransName"
+    tools:ignore="UseCompoundDrawables">
+
+    <TextView
+        android:id="@+id/tvAlbums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:singleLine="true"
+        android:text="专辑数"
+        android:textColor="@color/colorTextForeground"
+        android:textSize="11dp"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/tvAlbumsNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:singleLine="true"
+        android:text="Text"
+        android:textColor="@color/colorTextForeground"
+        android:textSize="11dp"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/tvMVs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:singleLine="true"
+        android:text="MV数"
+        android:textColor="@color/colorTextForeground"
+        android:textSize="11dp"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/tvMVsNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:singleLine="true"
+        android:text="Text"
+        android:textColor="@color/colorTextForeground"
+        android:textSize="11dp"
+        tools:ignore="SpUsage" />
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,9 +57,9 @@ class HomeFragment: BaseFragment() {
                 var adapter = BannerImageAdapter(imageUrls)
                 banner?.let {
                     it.addBannerLifecycleObserver(this)
-                    it.setIndicator(CircleIndicator(MyApplication.context))
+                    it.indicator = CircleIndicator(MyApplication.context)
                     it.setBannerRound(20f)
-                    it.setPageTransformer(ZoomOutPageTransformer());
+                    it.setPageTransformer(ZoomOutPageTransformer())
                     it.adapter = adapter
                 }
             }

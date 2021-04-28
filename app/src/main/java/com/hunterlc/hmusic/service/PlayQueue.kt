@@ -48,7 +48,7 @@ object PlayQueue {
     private fun savePlayQueue() {
         GlobalScope.launch {
             MyApplication.appDatabase.playQueueDao().loadAll().forEach {
-                MyApplication.appDatabase.playQueueDao().deleteById(it.songData.id ?: 0L)
+                MyApplication.appDatabase.playQueueDao().deleteById(it.songData.id)
             }
             currentQueue.value?.let {
                 for (song in it) {

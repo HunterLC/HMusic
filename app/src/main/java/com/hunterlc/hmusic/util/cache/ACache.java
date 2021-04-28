@@ -53,8 +53,8 @@ public class ACache {
     public static final int TIME_DAY = TIME_HOUR * 24;
     private static final int MAX_SIZE = 1000 * 1000 * 50; // 50 mb
     private static final int MAX_COUNT = Integer.MAX_VALUE; // 不限制存放数据的数量
-    private static Map<String, ACache> mInstanceMap = new HashMap<String, ACache>();
-    private ACacheManager mCache;
+    private static final Map<String, ACache> mInstanceMap = new HashMap<String, ACache>();
+    private final ACacheManager mCache;
 
     public static ACache get(Context ctx) {
         return get(ctx, "ACache");
@@ -713,13 +713,11 @@ public class ACache {
                 String saveTimeStr = strs[0];
                 while (saveTimeStr.startsWith("0")) {
                     saveTimeStr = saveTimeStr
-                            .substring(1, saveTimeStr.length());
+                            .substring(1);
                 }
                 long saveTime = Long.valueOf(saveTimeStr);
                 long deleteAfter = Long.valueOf(strs[1]);
-                if (System.currentTimeMillis() > saveTime + deleteAfter * 1000) {
-                    return true;
-                }
+                return System.currentTimeMillis() > saveTime + deleteAfter * 1000;
             }
             return false;
         }
@@ -738,8 +736,8 @@ public class ACache {
 
         private static String clearDateInfo(String strInfo) {
             if (strInfo != null && hasDateInfo(strInfo.getBytes())) {
-                strInfo = strInfo.substring(strInfo.indexOf(mSeparator) + 1,
-                        strInfo.length());
+                strInfo = strInfo.substring(strInfo.indexOf(mSeparator) + 1
+                );
             }
             return strInfo;
         }

@@ -88,7 +88,11 @@ data class SongsInnerData(
     @Parcelize
     data class ArtistsData(
         @SerializedName("id") val id: Long, //歌手id
-        @SerializedName("name") val name: String? // 歌手名字
+        @SerializedName("name") val name: String?, // 歌手名字
+        @SerializedName("picUrl") val picUrl: String?,
+        @SerializedName("albumSize") val albumSize: Int?,
+        @SerializedName("trans") val trans: String?,
+        @SerializedName("mvSize") val mvSize: Int?
     ): Parcelable
 
     @Parcelize
@@ -205,4 +209,32 @@ data class SearchDefaultInfo(
 data class SearchDefaultData(
     @SerializedName("showKeyword") val showKeyword: String,
     @SerializedName("realkeyword") var realkeyword: String
+)
+
+@Keep
+data class SearchHotDetailInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("data") var data: List<SearchHotDetailData>
+)
+
+@Keep
+data class SearchHotDetailData(
+    @SerializedName("searchWord") val searchWord: String,
+    @SerializedName("score") var score: Long,
+    @SerializedName("content") val content: String,
+    @SerializedName("iconUrl") val iconUrl: String
+)
+
+@Keep
+data class SearchInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("result") var result: SearchResult
+)
+
+@Keep
+data class SearchResult(
+    @SerializedName("songs") val songs: List<SongsInnerData>?,
+    @SerializedName("songCount") var songCount: Int?,
+    @SerializedName("artists") val artists: List<SongsInnerData.ArtistsData>?,
+    @SerializedName("artistCount") var artistCount: Int?,
 )

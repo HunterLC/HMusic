@@ -171,8 +171,8 @@ class PlayerActivity : SlideBackActivity() {
             }
         }
         // 页面状态栏适配
-        binding.titleBar?.let {
-            (it.layoutParams as ConstraintLayout.LayoutParams).apply {
+        binding.titleBar.let {
+            (it?.layoutParams as ConstraintLayout.LayoutParams).apply {
                 topToTop = ConstraintLayout.LayoutParams.PARENT_ID
                 topMargin = getStatusBarHeight(window, this@PlayerActivity)
             }
@@ -182,7 +182,7 @@ class PlayerActivity : SlideBackActivity() {
         binding.llBase?.let {
             (it.layoutParams as ConstraintLayout.LayoutParams).apply {
                 if (isLandScape){
-                    marginStart = (getStatusBarHeight(window, this@PlayerActivity) / MyApplication.context.getResources().getDisplayMetrics().density + 0.5f).toInt()
+                    marginStart = (getStatusBarHeight(window, this@PlayerActivity) / MyApplication.context.resources.displayMetrics.density + 0.5f).toInt()
                 }
 
             }
@@ -347,7 +347,7 @@ class PlayerActivity : SlideBackActivity() {
                     it?.let {
                         binding.tvName.text = it.name
                         binding.tvSongName?.text = it.name
-                        binding.tvArtist.text = it.artists?.let { artists ->
+                        binding.tvArtist.text = it.artists.let { artists ->
                             parseArtist(artists as ArrayList<SongsInnerData.ArtistsData>)
                         }
                         binding.tvArtistName?.text = binding.tvArtist.text
@@ -361,16 +361,24 @@ class PlayerActivity : SlideBackActivity() {
                 // 更改歌词
                 MyApplication.musicController.value?.getPlayingSongData()?.value?.let {
                     val lyric = result.getOrNull()
-                    if (lyric != null) {
+                    if (lyric != null ) {
                         //_lyricViewData.value = LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")
                         if (lyricTranslation.value == true) {
-                            hasLyric.value = LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")
-                            noLyric.value = LyricViewData(LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")!!.lyric, "true")
+                            hasLyric.value = LyricViewData(lyric.lrc.lyric, lyric.tlyric.lyric)
+                            noLyric.value = LyricViewData(
+                                LyricViewData(
+                                    lyric.lrc.lyric,
+                                    lyric.tlyric.lyric
+                                ).lyric, "true")
                             lyricViewData.value = hasLyric.value
 
                         } else {
-                            hasLyric.value = LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")
-                            noLyric.value = LyricViewData(LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")!!.lyric, "true")
+                            hasLyric.value = LyricViewData(lyric.lrc.lyric, lyric.tlyric.lyric)
+                            noLyric.value = LyricViewData(
+                                LyricViewData(
+                                    lyric.lrc.lyric,
+                                    lyric.tlyric.lyric
+                                ).lyric, "true")
                             lyricViewData.value = noLyric.value
                         }
                     }

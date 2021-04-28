@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.await
+import retrofit2.http.GET
 import retrofit2.http.Query
 import java.lang.RuntimeException
 import java.net.URLEncoder
@@ -47,6 +48,10 @@ object CloudMusicNetwork {
     suspend fun getMvUrl(id: Long) = mvService.getMvUrl(id).await()
     //获取默认搜索关键词
     suspend fun getSearchDefault() = searchService.getSearchDefault().await()
+    //获取热搜详细列表
+    suspend fun getSearchHotDetail() = searchService.getSearchHotDetail().await()
+    //搜索单曲、歌手名
+    suspend fun search(keywords: String, type: Int) = searchService.search(keywords, type).await()
 
 
     //借助协程技术

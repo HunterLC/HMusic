@@ -13,8 +13,8 @@ android {
         applicationId "com.hunterlc.hmusic"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.4_0423_release"
+        versionCode 2
+        versionName "1.0.4_0428_release"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

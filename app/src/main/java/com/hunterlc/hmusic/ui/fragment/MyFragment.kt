@@ -117,7 +117,7 @@ class MyFragment: BaseFragment() {
             val userPlaylistData = result.getOrNull()
             if (userPlaylistData != null){
                 LogUtil.e("Fragment","用户歌单正在更新")
-                setPlaylist(userPlaylistData as ArrayList<PlaylistData>)
+                setPlaylist(userPlaylistData)
             }
         })
 
@@ -147,8 +147,4 @@ class MyFragment: BaseFragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // _binding = null
-    }
 }

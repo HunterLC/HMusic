@@ -168,6 +168,36 @@ object Repository {
         }
     }
 
+    /***
+     * 获取热搜详细列表
+     */
+    fun getSearchHotDetail() = fire(Dispatchers.IO){
+        val searchHotDetailInfo = CloudMusicNetwork.getSearchHotDetail()
+
+        if (searchHotDetailInfo.code == 200){
+            LogUtil.e("Repository-getSearchHotDetail","获取热搜详细列表成功")
+            Result.success(searchHotDetailInfo)
+        } else {
+            LogUtil.e("Repository-getSearchHotDetail","获取热搜详细列表失败")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
+    /***
+     * 搜索单曲、歌手名
+     */
+    fun search(keywords: String, type: Int) = fire(Dispatchers.IO){
+        val searchInfo = CloudMusicNetwork.search(keywords, type)
+
+        if (searchInfo.code == 200){
+            LogUtil.e("Repository-search","搜索单曲、歌手名成功")
+            Result.success(searchInfo.result)
+        } else {
+            LogUtil.e("Repository-search","搜索单曲、歌手名失败")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {
