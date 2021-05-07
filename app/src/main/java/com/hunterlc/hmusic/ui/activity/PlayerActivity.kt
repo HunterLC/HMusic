@@ -100,7 +100,7 @@ class PlayerActivity : SlideBackActivity() {
             interpolator = LinearInterpolator()
             duration = DURATION_CD
             repeatCount = ANIMATION_REPEAT_COUNTS
-            //start()
+            start()
         }
     }
 
@@ -233,7 +233,8 @@ class PlayerActivity : SlideBackActivity() {
             ivMode.setOnClickListener { playViewModel.changePlayMode() }
             // 评论
             ivComment.setOnClickListener {
-
+                var intent = Intent(MyApplication.context,CommentActivity::class.java)
+                startActivity(intent)
             }
             // 喜欢音乐
             ivLike.setOnClickListener {
@@ -364,20 +365,20 @@ class PlayerActivity : SlideBackActivity() {
                     if (lyric != null ) {
                         //_lyricViewData.value = LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")
                         if (lyricTranslation.value == true) {
-                            hasLyric.value = LyricViewData(lyric.lrc.lyric, lyric.tlyric.lyric)
+                            hasLyric.value = LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")
                             noLyric.value = LyricViewData(
                                 LyricViewData(
-                                    lyric.lrc.lyric,
-                                    lyric.tlyric.lyric
+                                    lyric.lrc?.lyric?:"",
+                                    lyric.tlyric?.lyric?:""
                                 ).lyric, "true")
                             lyricViewData.value = hasLyric.value
 
                         } else {
-                            hasLyric.value = LyricViewData(lyric.lrc.lyric, lyric.tlyric.lyric)
+                            hasLyric.value = LyricViewData(lyric.lrc?.lyric?:"", lyric.tlyric?.lyric?:"")
                             noLyric.value = LyricViewData(
                                 LyricViewData(
-                                    lyric.lrc.lyric,
-                                    lyric.tlyric.lyric
+                                    lyric.lrc?.lyric?:"",
+                                    lyric.tlyric?.lyric?:""
                                 ).lyric, "true")
                             lyricViewData.value = noLyric.value
                         }
@@ -551,15 +552,15 @@ class PlayerActivity : SlideBackActivity() {
 
                 } else{
                     //设置cvCd的圆角弧度，看起来像圆形
-                    LogUtil.e("square_cd","目前是园")
+                    LogUtil.e("square_cd","目前是圆")
                     cvCd.radius = (120.dp()).toFloat()
                     //开启旋转动画
-                    objectAnimator.cancel()
-                    objectAnimator.start()
-                    startRotateAlways()
-                    //开启背后的圆弧传播
-                    diffuseView.start()
-                    diffuseView.visibility = View.VISIBLE
+//                    objectAnimator.cancel()
+//                    objectAnimator.start()
+//                    startRotateAlways()
+//                    //开启背后的圆弧传播
+//                    diffuseView.start()
+//                    diffuseView.visibility = View.VISIBLE
                 }
 
             })

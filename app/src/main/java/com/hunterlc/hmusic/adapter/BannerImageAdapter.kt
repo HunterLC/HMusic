@@ -4,8 +4,10 @@ import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.hunterlc.hmusic.MyApplication
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.util.BannerUtils
 
@@ -28,6 +30,9 @@ class BannerImageAdapter(imageUrls: List<String>) : BannerAdapter<String, Banner
         Glide.with(holder!!.itemView)
             .load(data)
             .into(holder.imageView)
+        holder.imageView.setOnClickListener {
+            Toast.makeText(MyApplication.context,"还没有开发QAQ",Toast.LENGTH_SHORT).show()
+        }
     }
 
 

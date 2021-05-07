@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -63,20 +64,11 @@ class MyFragment: BaseFragment() {
             clFavorite.setOnClickListener {
 
             }
-
-            // 本地音乐
-            clLocal.setOnClickListener {
-
-            }
             // 播放历史
             clLatest.setOnClickListener {
 
             }
             clPersonalFM.setOnClickListener {
-
-            }
-            // 用户云盘
-            clUserCloud.setOnClickListener {
 
             }
         }
@@ -122,11 +114,11 @@ class MyFragment: BaseFragment() {
         })
 
 
-        mainViewModel.statusBarHeight.observe(viewLifecycleOwner) {
-            (binding.clUser.layoutParams as LinearLayout.LayoutParams).apply {
+        mainViewModel.statusBarHeight.observe(viewLifecycleOwner, Observer {
+            (binding.clTop.layoutParams as LinearLayout.LayoutParams).apply {
                 topMargin = it + ((56 + 8) * mainViewModel.scale.value!! + 0.5f).toInt()
             }
-        }
+        })
 
         mainViewModel.singleColumnPlaylist.observe(viewLifecycleOwner, Observer {
             val count = if (it) {

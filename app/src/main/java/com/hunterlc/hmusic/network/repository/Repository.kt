@@ -198,6 +198,21 @@ object Repository {
         }
     }
 
+    /***
+     * 获取推荐歌单
+     */
+    fun getRecommendPlaylist() = fire(Dispatchers.IO){
+        val recommendPlaylistInfo = CloudMusicNetwork.getRecommendPlaylist()
+
+        if (recommendPlaylistInfo.code == 200){
+            LogUtil.e("Repository-getRecommendPlaylist","获取推荐歌单成功")
+            Result.success(recommendPlaylistInfo.playlists)
+        } else {
+            LogUtil.e("Repository-getRecommendPlaylist","获取推荐歌单失败")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

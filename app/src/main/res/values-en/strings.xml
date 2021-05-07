@@ -5,7 +5,6 @@
     <string name="about">About</string>
     <string name="check_for_updates">Check for updates</string>
     <string name="open_source_code">Open source code</string>
-    <string name="slogan">Don\'t go so far that you forget why you started</string>
     <string name="feedback">Feedback</string>
     <string name="content">Content</string>
     <string name="upload">Upload</string>
@@ -43,7 +42,6 @@
     <string name="update_log">Update log</string>
     <string name="song_comment">Song comment</string>
     <string name="playlist_recommend">Playlist recommend</string>
-    <string name="sentence_recommend">Sentence recommend</string>
     <string name="switch_account">Switch account</string>
     <string name="login_by_phone">Login by phone</string>
     <string name="search">Search</string>
@@ -113,4 +111,10 @@
     <string name="clear">Clear</string>
     <string name="track">Track</string>
     <string name="singer">Singer</string>
+    <string name="collection">Collection</string>
+    <string name="slogan">All for you</string>
+    <string name="recommend">Recommend</string>
+    <string name="recommended">Recommend</string>
+    <string name="hot">Hot</string>
+    <string name="latest">Latest</string>
 </resources>

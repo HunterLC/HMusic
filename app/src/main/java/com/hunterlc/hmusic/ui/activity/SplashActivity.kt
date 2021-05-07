@@ -1,22 +1,17 @@
 package com.hunterlc.hmusic.ui.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import androidx.core.view.GravityCompat
 import com.hunterlc.hmusic.MyApplication
-import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.databinding.ActivitySplashBinding
-import com.hunterlc.hmusic.manager.ActivityCollector
-import com.hunterlc.hmusic.manager.ActivityManager
 import com.hunterlc.hmusic.ui.base.BaseActivity
 import com.hunterlc.hmusic.util.LogUtil
+
 
 class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -32,6 +27,13 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
     }
 
+    override fun initView() {
+        //val typefaceEN = Typeface.createFromAsset(assets, "fonts/SellvinyQueen.ttf")
+        val typefaceCN = Typeface.createFromAsset(assets, "fonts/Happy.ttf")
+        //binding.tvAPPName.typeface = typefaceEN
+        binding.tvAPPSlogan.typeface = typefaceCN
+    }
+
     override fun initListener() {
         binding.apply{
             //响应跳过启动页
@@ -40,7 +42,7 @@ class SplashActivity : BaseActivity() {
                     thread?.interrupt()
                     thread = null
                 }
-                LogUtil.d("SplashActivity","clicked the SKIP button")
+                LogUtil.d("SplashActivity", "clicked the SKIP button")
                 //跳转到首页
                 MyApplication.activityManager.startMainActivity(this@SplashActivity)
                 //结束当前Activity
@@ -51,11 +53,6 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //全屏且让背景沉浸到状态栏
-        val decorView = window.decorView
-        decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        window.statusBarColor = Color.TRANSPARENT
 
         //开启跳过倒计时线程
         if (thread == null) {
@@ -92,7 +89,7 @@ class SplashActivity : BaseActivity() {
     // 自定义的线程---控制倒计时
     inner class TimeThread : Thread() {
         override fun run() {
-            var countDown = 2  //倒计时
+            var countDown = 1  //倒计时
             while (countDown >= 0) {
                 var msg = Message()
                 msg.what = MSG_TYPE

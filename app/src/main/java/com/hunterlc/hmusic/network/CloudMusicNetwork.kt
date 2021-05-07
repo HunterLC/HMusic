@@ -52,6 +52,8 @@ object CloudMusicNetwork {
     suspend fun getSearchHotDetail() = searchService.getSearchHotDetail().await()
     //搜索单曲、歌手名
     suspend fun search(keywords: String, type: Int) = searchService.search(keywords, type).await()
+    //获取推荐歌单
+    suspend fun getRecommendPlaylist() = playListService.getRecommendPlaylist().await()
 
 
     //借助协程技术

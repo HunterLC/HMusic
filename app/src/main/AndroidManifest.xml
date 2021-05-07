@@ -25,11 +25,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HMusic">
-        <activity android:name=".ui.activity.SearchActivity"></activity>
-        <!-- android:screenOrientation="landscape" -->
+        <activity android:name=".ui.activity.CommentActivity"
+            android:theme="@style/Theme.HMusic.FullScreen.Translucent"
+            ></activity>
+        <activity android:name=".ui.activity.SearchActivity" /> <!-- android:screenOrientation="landscape" -->
         <activity
             android:name=".ui.activity.VideoActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity
@@ -41,7 +43,7 @@
             android:theme="@style/Theme.HMusic.FullScreen" />
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:theme="@style/Theme.HMusic.Splash">
+            android:theme="@style/Theme.HMusic.FullScreen.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

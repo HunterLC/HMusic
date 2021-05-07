@@ -118,28 +118,6 @@ data class SongUrlInnerData(
     @SerializedName("type") val type: String
 )
 
-// 歌曲评论
-@Keep
-data class CommentData(
-    val hotComments: List<HotComment>, // 热门评论
-    val total: Long // 总评论
-)
-
-@Keep
-data class HotComment(
-    val user: CommentUser,
-    val content: String, // 评论内容
-    val time: Long, // 评论时间
-    val likedCount: Long // 点赞数
-)
-
-@Keep
-data class CommentUser(
-    val avatarUrl: String, // 头像
-    val nickname: String, // 昵称
-    val userId: Long //
-)
-
 @Keep
 data class LoginInfo(
     val phone: String, // 电话
@@ -237,4 +215,56 @@ data class SearchResult(
     @SerializedName("songCount") var songCount: Int?,
     @SerializedName("artists") val artists: List<SongsInnerData.ArtistsData>?,
     @SerializedName("artistCount") var artistCount: Int?,
+)
+
+@Keep
+data class RecommendPlaylistInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("more") var more: Boolean,
+    @SerializedName("total") val total: Int,
+    @SerializedName("playlists") var playlists: List<RecommendPlaylistData>
+)
+
+@Keep
+data class RecommendPlaylistData(
+    @SerializedName("name") val name: String,
+    @SerializedName("id") var id: Long,
+    @SerializedName("coverImgUrl") val coverImgUrl: String,
+    @SerializedName("description") var description: String,
+    @SerializedName("playCount") val playCount: Long,
+    @SerializedName("tag") var tag: String?,
+    @SerializedName("trackCount") val trackCount: Int,
+    @SerializedName("subscribedCount") var subscribedCount: Int
+)
+
+// 歌曲评论
+@Keep
+data class CommentInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("data") var data: CommentData
+)
+
+@Keep
+data class CommentData(
+    @SerializedName("comments") val comments: List<CommentInnerData>, // 热门评论
+    @SerializedName("totalCount") val totalCount: Long,
+    @SerializedName("hasMore") val hasMore: Boolean,
+    @SerializedName("cursor") val cursor: String
+)
+
+@Keep
+data class CommentInnerData(
+    @SerializedName("commentId") val commentId: Long,
+    @SerializedName("content") val content: String,
+    @SerializedName("time") val time: Long,
+    @SerializedName("likedCount") val likedCount: Long,
+    @SerializedName("liked") val liked: Boolean,
+    @SerializedName("user") val user: CommentUser
+)
+
+@Keep
+data class CommentUser(
+    @SerializedName("userId") val userId: Long,
+    @SerializedName("nickname") val nickname: String,
+    @SerializedName("avatarUrl") val avatarUrl: String
 )

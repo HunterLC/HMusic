@@ -13,8 +13,8 @@ android {
         applicationId "com.hunterlc.hmusic"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.0.4_0428_release"
+        versionCode 3
+        versionName "1.0.4_0505_release"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -61,7 +61,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -103,9 +103,13 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.palette:palette-ktx:1.0.0'
 
+    //广告轮播
     implementation 'com.youth.banner:banner:2.1.0'
 
     // 漂亮的开关
     implementation 'com.bitvale:switcher:1.1.1'
+
+    //paging 3
+    implementation "androidx.paging:paging-runtime:3.0.0-rc01"
 
 }

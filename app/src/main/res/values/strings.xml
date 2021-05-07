@@ -5,7 +5,6 @@
     <string name="about">关于</string>
     <string name="check_for_updates">检查更新</string>
     <string name="open_source_code">使用开源项目</string>
-    <string name="slogan">不要走得太远，以至于忘了，为什么而出发</string>
     <string name="feedback">反馈</string>
     <string name="content">内容</string>
     <string name="upload">上传</string>
@@ -43,7 +42,6 @@
     <string name="update_log">更新日志</string>
     <string name="song_comment">歌曲评论</string>
     <string name="playlist_recommend">歌单推荐</string>
-    <string name="sentence_recommend">句子推荐</string>
     <string name="switch_account">切换账号</string>
     <string name="login_by_phone">手机号登录</string>
     <string name="search">搜索</string>
@@ -113,5 +111,12 @@
     <string name="clear">清除</string>
     <string name="track">单曲</string>
     <string name="singer">歌手(意思意思，界面很丑)</string>
+    <string name="collection">收藏</string>
+    <string name="slogan">为你全新而来</string>
+    <string name="recommend">日推</string>
+    <string name="recommended">推荐</string>
+    <string name="hot">热门</string>
+    <string name="latest">最新</string>
+
 
 </resources>

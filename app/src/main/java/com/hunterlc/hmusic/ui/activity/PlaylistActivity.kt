@@ -37,6 +37,7 @@ import com.hunterlc.hmusic.util.StatusbarUtil.getStatusBarHeight
 import com.hunterlc.hmusic.util.copyToClipboard
 import com.hunterlc.hmusic.util.runOnMainThread
 import jp.wasabeef.glide.transformations.BlurTransformation
+import kotlinx.android.synthetic.main.activity_player.*
 import kotlinx.android.synthetic.main.activity_playlist.*
 
 /**
@@ -118,6 +119,7 @@ class PlaylistActivity: BaseActivity() {
                 Toast.makeText(this@PlaylistActivity,"歌单 ID 已经成功复制到剪贴板",Toast.LENGTH_SHORT).show()
                 copyToClipboard(this@PlaylistActivity, playlistViewModel.id.toString())
             }
+
         }
     }
 

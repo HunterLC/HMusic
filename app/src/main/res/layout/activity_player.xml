@@ -300,7 +300,7 @@
             android:layout_height="240dp"
             app:cardBackgroundColor="#00000000"
             app:cardCornerRadius="120dp"
-            app:cardElevation="0dp"
+            app:cardElevation="4dp"
             app:layout_constraintBottom_toTopOf="@+id/clMenu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
