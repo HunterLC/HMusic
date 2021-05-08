@@ -44,6 +44,8 @@ import com.hunterlc.hmusic.data.SongsInnerData
 import com.hunterlc.hmusic.databinding.ActivityPlayerBinding
 import com.hunterlc.hmusic.manager.VolumeManager
 import com.hunterlc.hmusic.service.base.BaseMediaService
+import com.hunterlc.hmusic.ui.activity.CommentActivity.Companion.EXTRA_LONG_ID
+import com.hunterlc.hmusic.ui.activity.CommentActivity.Companion.EXTRA_STRING_NAME
 import com.hunterlc.hmusic.ui.base.BaseActivity
 import com.hunterlc.hmusic.ui.base.SlideBackActivity
 import com.hunterlc.hmusic.ui.viewmodel.PlayerViewModel
@@ -234,6 +236,8 @@ class PlayerActivity : SlideBackActivity() {
             // 评论
             ivComment.setOnClickListener {
                 var intent = Intent(MyApplication.context,CommentActivity::class.java)
+                intent.putExtra(EXTRA_LONG_ID,MyApplication.musicController.value?.getPlayingSongData()?.value?.id)
+                intent.putExtra(EXTRA_STRING_NAME,MyApplication.musicController.value?.getPlayingSongData()?.value?.name)
                 startActivity(intent)
             }
             // 喜欢音乐

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clBase"
     android:fitsSystemWindows="true"
+    android:background="@drawable/bg_playlist_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.CommentActivity">
@@ -11,20 +12,42 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_slide_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.hunterlc.hmusic.widget.TitleBarLayout
             android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:text="@string/good_comments">
+
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:alpha="0.72"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mz_titlebar_ic_share_dark"
+                tools:ignore="ContentDescription" />
+        </com.hunterlc.hmusic.widget.TitleBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTitleBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toBottomOf="@+id/titleBar" >
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -32,11 +55,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/good_comments"
                 android:textColor="@color/colorTextForeground"
+                android:layout_marginStart="16dp"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tabLayout"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
@@ -59,11 +82,6 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/recommended"/>
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/hot" />
 
                 <com.google.android.material.tabs.TabItem
@@ -74,27 +92,26 @@
             </com.google.android.material.tabs.TabLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp2Comment"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHotComment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:overScrollMode="never"
             app:layout_constraintBottom_toTopOf="@+id/clSendComment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleBar">
+            app:layout_constraintTop_toBottomOf="@+id/clTitleBar" />
 
-        </androidx.viewpager2.widget.ViewPager2>
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rvComment"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:overScrollMode="never"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/clSendComment"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/titleBar" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLatestComment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/clSendComment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clTitleBar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clSendComment"

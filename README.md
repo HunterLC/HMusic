@@ -9,8 +9,13 @@ this is a simple music demo for practicing
 - [x] 主页面
 
 # 更新日志
+## 2021-05-08
+1. 支持歌曲最火、最新评论查看
+2. 使用[Paging 3](https://developer.android.google.cn/topic/libraries/architecture/paging/v3-overview)实现评论分页自动加载
+
 ## 2021-04-28
 1. 搜索界面实现歌曲、歌手搜索
+
 ## 2021-04-27
 1. 新增搜索界面，实现默认搜索词加载
 ## 2021-04-26

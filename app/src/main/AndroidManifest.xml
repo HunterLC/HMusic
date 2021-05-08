@@ -37,7 +37,7 @@
         <activity
             android:name=".ui.activity.PlayerActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.HMusic.FullScreen.Translucent" />
+            android:theme="@style/Theme.HMusic.FullScreen" />
         <activity
             android:name=".ui.activity.PlaylistActivity"
             android:theme="@style/Theme.HMusic.FullScreen" />

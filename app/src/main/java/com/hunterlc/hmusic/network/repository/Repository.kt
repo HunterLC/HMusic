@@ -1,9 +1,16 @@
 package com.hunterlc.hmusic.network.repository
 
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.hunterlc.hmusic.data.CommentInnerData
 import com.hunterlc.hmusic.network.CloudMusicNetwork
+import com.hunterlc.hmusic.network.pagingsource.CommentPagingSource
+import com.hunterlc.hmusic.network.service.CommentService
 import com.hunterlc.hmusic.util.LogUtil
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import java.lang.Exception
 import java.lang.RuntimeException
 import kotlin.coroutines.CoroutineContext
@@ -212,6 +219,16 @@ object Repository {
             Result.failure(RuntimeException("response of code is not 200"))
         }
     }
+
+    private const val PAGE_SIZE = 20
+    private val commentService = CommentService.create()
+    fun getCommentsPagingData(type: Int, id: Long, sortType: Int): Flow<PagingData<CommentInnerData>> {
+        return Pager(
+            config = PagingConfig(PAGE_SIZE),
+            pagingSourceFactory = { CommentPagingSource(commentService, type, id, sortType) }
+        ).flow
+    }
+
 
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
