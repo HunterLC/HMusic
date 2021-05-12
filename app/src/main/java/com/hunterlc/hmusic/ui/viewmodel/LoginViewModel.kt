@@ -11,7 +11,7 @@ class LoginViewModel : ViewModel() {
     val userLoginInfoLiveData = MutableLiveData<LoginInfo>()
 
     var userDetailLiveData = Transformations.switchMap(userLoginInfoLiveData) { loginInfo ->
-        Repository.loginByCellphone(loginInfo.phone, loginInfo.countrycode, loginInfo.md5_password)
+        Repository.loginByCellphone(loginInfo.phone, loginInfo.countryCode, loginInfo.md5_password)
 
     }
 

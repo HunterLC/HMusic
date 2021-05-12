@@ -32,16 +32,16 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
             : ImageView? = null
     private var mPlayBtn //播放按钮
             : ImageView? = null
+    private var mBackBtn: ImageView? = null //返回按钮
+    private var mTvTitleBar: TextView? = null //标题
     private var mFullScreenBtn //全屏按钮
             : ImageView? = null
     private var mPlayProgressBar //播放进度条
             : SeekBar? = null
     private var mPlayTime //播放时间
             : TextView? = null
-    private var mIvShare: ImageView? = null
-    private var myTitleBar: TitleBarLayout? = null
     private var mControlPanel: LinearLayout? = null
-    private var mTitleBar: ConstraintLayout? = null
+    private var mTitleBar: LinearLayout? = null
     private var mVideoUri: Uri? = null
     private var outAnima //控制面板出入动画
             : Animation? = null
@@ -117,12 +117,12 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
             mView!!.findViewById<View>(R.id.play_button) as ImageView
         mFullScreenBtn =
             mView!!.findViewById<View>(R.id.full_screen_button) as ImageView
-        mIvShare = mView!!.findViewById(R.id.ivShare) as ImageView
+        mBackBtn = mView!!.findViewById<View>(R.id.btnBack) as ImageView
         mPlayProgressBar = mView!!.findViewById<View>(R.id.progress_bar) as SeekBar
         mPlayTime = mView!!.findViewById<View>(R.id.time) as TextView
+        mTvTitleBar = mView!!.findViewById<View>(R.id.tvTitleBar) as TextView
         mControlPanel = mView!!.findViewById<View>(R.id.control_panel) as LinearLayout
-        mTitleBar = mView!!.findViewById(R.id.bar_control_panel) as ConstraintLayout
-        myTitleBar = mView!!.findViewById(R.id.titleBar) as TitleBarLayout
+        mTitleBar = mView!!.findViewById<View>(R.id.bar_control_panel) as LinearLayout
         mVideoView = mView!!.findViewById<View>(R.id.video_view) as VideoView
         //获取屏幕大小
         (context as Activity).windowManager.defaultDisplay.getSize(screenSize)
@@ -186,6 +186,7 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
         mBigPlayBtn!!.setOnClickListener(this)
         mPlayBtn!!.setOnClickListener(this)
         mFullScreenBtn!!.setOnClickListener(this)
+        mBackBtn!!.setOnClickListener(this)
         //进度条进度改变监听器
         mPlayProgressBar!!.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
@@ -229,8 +230,6 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
                 mTitleBar!!.visibility = View.VISIBLE
                 sendHideControlPanelMessage()
             }
-            LogUtil.e("为什么不显示名字", myTitleBar!!.getTitleBarText() as String)
-            setTitleBar(myTitleBar!!.getTitleBarText() as String, -1)
         } else if (v.id == R.id.big_play_button) { //大的播放按钮
             mBigPlayBtn!!.visibility = View.GONE
             mVideoView!!.background = null
@@ -266,7 +265,18 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
                 setNoFullScreen()
             }
             sendHideControlPanelMessage()
+        } else if (v.id == R.id.btnBack) {
+            if (myContext!!.resources.configuration.orientation
+                == Configuration.ORIENTATION_PORTRAIT
+            ) {
+                val activity = myContext as Activity
+                activity.finish()
+            } else {
+                setNoFullScreen()
+            }
+            sendHideControlPanelMessage()
         }
+
     }
 
     //设置当前时间
@@ -309,11 +319,9 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
         }
 
     fun setTitleBar(name: String, color: Int){
-        LogUtil.e("为什么不显示名字",name)
-        myTitleBar!!.setTitleBarText(name)
-        LogUtil.e("为什么不显示名字", myTitleBar!!.getTitleBarText() as String)
-        myTitleBar!!.setTextColor(color)
-        mIvShare!!.setColorFilter(-1)
+        mTvTitleBar!!.text = name
+        mTvTitleBar!!.setTextColor(color)
+        mBackBtn!!.setColorFilter(color)
     }
 
     //设置视频初始画面
@@ -373,5 +381,10 @@ class SimpleVideoView : RelativeLayout, View.OnClickListener {
         ac!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         ac.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setSize()
+    }
+
+    //判断目前状态是不是横屏
+    fun getFullScreenState(): Boolean{
+        return isFullScreen
     }
 }

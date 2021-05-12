@@ -1,6 +1,7 @@
 package com.hunterlc.hmusic.network.service
 
 import com.hunterlc.hmusic.data.RecommendPlaylistInfo
+import com.hunterlc.hmusic.data.ToplistInfo
 import com.hunterlc.hmusic.data.UserPlaylistData
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,4 +15,8 @@ interface PlayListService {
     //推荐歌单
     @GET("/top/playlist/highquality")
     fun getRecommendPlaylist(): Call<RecommendPlaylistInfo>
+
+    //榜单
+    @GET("/toplist")
+    fun getToplist(): Call<ToplistInfo>
 }

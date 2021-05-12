@@ -42,8 +42,8 @@ object Repository {
     fun loginByCellphone(phone: String, countrycode: Int, md5_password: String) = fire(Dispatchers.IO) {
         val userDetailData = CloudMusicNetwork.loginByCellphone(phone, countrycode, md5_password)
 
-        if (userDetailData.profile != null){
-            LogUtil.e("Repository-loginByCellphone","登录并获取用户信息成功")
+        if (userDetailData != null){
+            LogUtil.e("Repository-loginByCellphone","登录并获取用户信息")
             Result.success(userDetailData)
         } else {
             LogUtil.e("Repository-loginByCellphone","登录并获取用户信息为null")
@@ -216,6 +216,21 @@ object Repository {
             Result.success(recommendPlaylistInfo.playlists)
         } else {
             LogUtil.e("Repository-getRecommendPlaylist","获取推荐歌单失败")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
+    /***
+     * 获取榜单
+     */
+    fun getToplist() = fire(Dispatchers.IO){
+        val topListInfo = CloudMusicNetwork.getToplist()
+
+        if (topListInfo.code == 200){
+            LogUtil.e("Repository-getToplist","获取榜单成功")
+            Result.success(topListInfo.list)
+        } else {
+            LogUtil.e("Repository-getToplist","获取榜单失败")
             Result.failure(RuntimeException("response of code is not 200"))
         }
     }

@@ -9,6 +9,9 @@ this is a simple music demo for practicing
 - [x] 主页面
 
 # 更新日志
+## 2021-05-12
+1. 支持密码登录
+
 ## 2021-05-08
 1. 支持歌曲最火、最新评论查看
 2. 使用[Paging 3](https://developer.android.google.cn/topic/libraries/architecture/paging/v3-overview)实现评论分页自动加载

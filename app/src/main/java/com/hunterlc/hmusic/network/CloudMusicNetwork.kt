@@ -54,6 +54,8 @@ object CloudMusicNetwork {
     suspend fun search(keywords: String, type: Int) = searchService.search(keywords, type).await()
     //获取推荐歌单
     suspend fun getRecommendPlaylist() = playListService.getRecommendPlaylist().await()
+    //获取榜单
+    suspend fun getToplist() = playListService.getToplist().await()
 
 
     //借助协程技术

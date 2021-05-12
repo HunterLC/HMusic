@@ -1,5 +1,6 @@
 package com.hunterlc.hmusic.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.hunterlc.hmusic.adapter.PlaylistRecommendAdapter
 import com.hunterlc.hmusic.data.RecommendPlaylistData
 import com.hunterlc.hmusic.databinding.FragmentHomeBinding
 import com.hunterlc.hmusic.databinding.FragmentMyBinding
+import com.hunterlc.hmusic.ui.activity.TopListActivity
 import com.hunterlc.hmusic.ui.base.BaseFragment
 import com.hunterlc.hmusic.ui.viewmodel.HomeFragmentViewModel
 import com.hunterlc.hmusic.ui.viewmodel.MainViewModel
@@ -47,12 +49,19 @@ class HomeFragment: BaseFragment() {
         homeFragmentViewModel.getRecommendPlaylist()
     }
 
+    override fun initListener() {
+        _binding?.ivTopList1?.setOnClickListener {
+            val intent = Intent(MyApplication.context,TopListActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     override fun initObserver() {
-        mainViewModel.statusBarHeight.observe(viewLifecycleOwner) {
+        mainViewModel.statusBarHeight.observe(viewLifecycleOwner, Observer {
             (binding.clUser.layoutParams as LinearLayout.LayoutParams).apply {
                 topMargin = it + ((56 + 4) * mainViewModel.scale.value!! + 0.5f).toInt()
             }
-        }
+        })
         homeFragmentViewModel.bannerInfoLiveData.observe(this, Observer {  result ->
             val banners = result.getOrNull()
             if (banners != null){

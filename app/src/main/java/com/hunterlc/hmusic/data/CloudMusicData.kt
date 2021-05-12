@@ -36,11 +36,20 @@ data class UserPlaylistData(
 )
 
 @Keep
+data class ToplistInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("list") val list: List<PlaylistData>
+)
+
+@Keep
 data class PlaylistData(
     @SerializedName("coverImgUrl") val coverImgUrl: String, // 歌单图片
     @SerializedName("name") val name: String, // 歌单名称
     @SerializedName("trackCount") val trackCount: Int, // 歌单歌曲数量
-    @SerializedName("id") val id: Long // 歌单 id
+    @SerializedName("id") val id: Long, // 歌单 id
+    @SerializedName("playCount") val playCount: Long,
+    @SerializedName("description") val description: String, // 歌单 id
+    @SerializedName("updateFrequency") val updateFrequency: String
 )
 
 @Keep
@@ -121,7 +130,7 @@ data class SongUrlInnerData(
 @Keep
 data class LoginInfo(
     val phone: String, // 电话
-    val countrycode: Int, // 国家代码
+    val countryCode: Int, // 国家代码
     val md5_password: String // 密码
 )
 

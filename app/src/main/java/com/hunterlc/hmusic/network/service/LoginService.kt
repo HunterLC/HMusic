@@ -9,5 +9,5 @@ import retrofit2.http.Query
 interface LoginService {
 
     @POST("/login/cellphone")
-    fun loginByCellphone(@Query("phone") phone: String, @Query("countrycode") countrycode: Int, @Query("password") password: String): Call<UserDetailData>
+    fun loginByCellphone(@Query("phone") phone: String, @Query("countrycode") countrycode: Int, @Query("md5_password") md5_password: String): Call<UserDetailData>
 }

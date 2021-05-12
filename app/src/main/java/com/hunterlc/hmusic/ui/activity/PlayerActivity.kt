@@ -67,8 +67,8 @@ class PlayerActivity : SlideBackActivity() {
         private const val BACKGROUND_SCALE_X = 2.5F
 
         // 背景模糊系数
-        private const val BLUR_RADIUS = 15
-        private const val BLUR_SAMPLING = 5
+        private const val BLUR_RADIUS = 1
+        private const val BLUR_SAMPLING = 1
 
         // 动画循环时长
         private const val DURATION_CD = 27_500L
@@ -109,7 +109,7 @@ class PlayerActivity : SlideBackActivity() {
     private val objectAnimator1: ObjectAnimator by lazy {
         ObjectAnimator.ofFloat(binding.ivBackgroundBlur1, ANIMATION_PROPERTY_NAME, 0f, 360f).apply {
             interpolator = LinearInterpolator()
-            duration = 60000L
+            duration = 70000L
             repeatCount = ANIMATION_REPEAT_COUNTS
             start()
         }
@@ -127,7 +127,7 @@ class PlayerActivity : SlideBackActivity() {
     private val objectAnimator3: ObjectAnimator by lazy {
         ObjectAnimator.ofFloat(binding.ivBackgroundBlur3, ANIMATION_PROPERTY_NAME, 0f, 360f).apply {
             interpolator = LinearInterpolator()
-            duration = 50000L
+            duration = 75000L
             repeatCount = ANIMATION_REPEAT_COUNTS
             start()
         }
@@ -173,8 +173,8 @@ class PlayerActivity : SlideBackActivity() {
             }
         }
         // 页面状态栏适配
-        binding.titleBar.let {
-            (it?.layoutParams as ConstraintLayout.LayoutParams).apply {
+        binding.titleBar?.let {
+            (it.layoutParams as ConstraintLayout.LayoutParams).apply {
                 topToTop = ConstraintLayout.LayoutParams.PARENT_ID
                 topMargin = getStatusBarHeight(window, this@PlayerActivity)
             }
@@ -197,7 +197,9 @@ class PlayerActivity : SlideBackActivity() {
             .setFrameClearDrawable(windowBackground)
             .setBlurAlgorithm(RenderScriptBlur(this))
             .setBlurRadius(radius)
-            .setOverlayColor(ContextCompat.getColor(this, R.color.dso_color_lyrics_back))
+            //.setOverlayColor(ContextCompat.getColor(this, R.color.dso_color_lyrics_back))
+
+
 
         binding.apply {
             // 时长右对齐
@@ -399,6 +401,27 @@ class PlayerActivity : SlideBackActivity() {
                         transformations(coil.transform.RoundedCornersTransformation())
                         size(ViewSizeResolver(binding.ivCover))
                     }
+
+//                    binding.ivBackground.load(bitmap) {
+//                        placeholder(binding.ivBackground.drawable)
+//                        transformations(coil.transform.RoundedCornersTransformation())
+//                        size(ViewSizeResolver(binding.ivBackground))
+//                    }
+//                    binding.ivBackgroundBlur3.load(bitmap) {
+//                        placeholder(binding.ivBackgroundBlur3.drawable)
+//                        transformations(coil.transform.RoundedCornersTransformation())
+//                        size(ViewSizeResolver(binding.ivBackgroundBlur3))
+//                    }
+//                    binding.ivBackgroundBlur2.load(bitmap) {
+//                        placeholder(binding.ivBackgroundBlur2.drawable)
+//                        transformations(coil.transform.RoundedCornersTransformation())
+//                        size(ViewSizeResolver(binding.ivBackgroundBlur2))
+//                    }
+//                    binding.ivBackgroundBlur1.load(bitmap) {
+//                        placeholder(binding.ivBackgroundBlur1.drawable)
+//                        transformations(coil.transform.RoundedCornersTransformation())
+//                        size(ViewSizeResolver(binding.ivBackgroundBlur1))
+//                    }
                     // 设置 背景 图片
                     Glide.with(MyApplication.context)
                         .load(bitmap)
@@ -445,9 +468,9 @@ class PlayerActivity : SlideBackActivity() {
             MyApplication.musicController.observe(this@PlayerActivity, Observer { nullableController ->
                     nullableController?.let { controller ->
                         controller.isPlaying().observe(this@PlayerActivity, Observer {
-                            objectAnimator1.start()
-                            objectAnimator2.start()
-                            objectAnimator3.start()
+                            objectAnimator1.resume()
+                            objectAnimator2.resume()
+                            objectAnimator3.resume()
                             if (it) {
                                 binding.ivPlay.setImageResource(R.drawable.ic_pause_btn)
                                 handler.sendEmptyMessageDelayed(MSG_PROGRESS, DELAY_MILLIS)

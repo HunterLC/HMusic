@@ -5,20 +5,19 @@
     android:id="@+id/clBase"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPageBackground"
+
     android:visibility="visible"
     tools:context=".ui.activity.PlayerActivity"
     android:clipChildren="false"
     android:clipToPadding="false">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/blurViewCover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBlurViewBackground"
         android:visibility="visible"
+        android:background="@color/colorTransparency"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +77,7 @@
         android:id="@+id/blurViewLyric"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#89FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,8 +155,7 @@
                 android:id="@+id/lyricView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:lrcPadding="35dp"
-                >
+                app:lrcPadding="35dp">
 
             </com.dirror.lyricviewx.LyricViewX>
 
