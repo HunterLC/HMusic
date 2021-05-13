@@ -26,6 +26,7 @@ import com.hunterlc.hmusic.ui.activity.TopListActivity
 import com.hunterlc.hmusic.ui.base.BaseFragment
 import com.hunterlc.hmusic.ui.viewmodel.HomeFragmentViewModel
 import com.hunterlc.hmusic.ui.viewmodel.MainViewModel
+import com.hunterlc.hmusic.util.LogUtil
 import com.hunterlc.hmusic.util.runOnMainThread
 import com.youth.banner.config.BannerConfig
 import com.youth.banner.indicator.CircleIndicator
@@ -48,10 +49,12 @@ class HomeFragment: BaseFragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun initView() {
         homeFragmentViewModel.getBanner()
 
         if (MyApplication.userManager.hasCookie()){
+            LogUtil.e("hasCookiehasCookiehasCookie","hasCookie")
             homeFragmentViewModel.getDailyPlaylist()
         } else {
             homeFragmentViewModel.getRecommendPlaylist()
@@ -98,7 +101,7 @@ class HomeFragment: BaseFragment() {
                 for (item in banners){
                     imageUrls.add(item.pic)
                 }
-                var adapter = BannerImageAdapter(imageUrls)
+                val adapter = BannerImageAdapter(imageUrls)
                 banner?.let {
                     it.addBannerLifecycleObserver(this)
                     it.indicator = CircleIndicator(MyApplication.context)
@@ -113,24 +116,20 @@ class HomeFragment: BaseFragment() {
         homeFragmentViewModel.recommendPlaylistLiveData.observe(this, Observer { result ->
             val recommendPlaylistData = result.getOrNull()
             if (recommendPlaylistData != null){
-                runOnMainThread {
-                    binding.rvPlaylistRecommend.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
-                    binding.rvPlaylistRecommend.adapter = PlaylistRecommendAdapter(
-                        recommendPlaylistData as ArrayList<RecommendPlaylistData>
-                    )
-                }
+                binding.rvPlaylistRecommend.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
+                binding.rvPlaylistRecommend.adapter = PlaylistRecommendAdapter(
+                    recommendPlaylistData as ArrayList<RecommendPlaylistData>
+                )
             }
         })
 
         homeFragmentViewModel.dailyPlaylistLiveData.observe(this, Observer { result ->
             val dailyPlaylistData = result.getOrNull()
             if (dailyPlaylistData != null){
-                runOnMainThread {
-                    binding.rvPlaylistRecommend.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
-                    binding.rvPlaylistRecommend.adapter = DailyPlaylistAdapter(
-                        dailyPlaylistData as ArrayList<DailyPlaylistData>
-                    )
-                }
+                binding.rvPlaylistRecommend.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
+                binding.rvPlaylistRecommend.adapter = DailyPlaylistAdapter(
+                    dailyPlaylistData as ArrayList<DailyPlaylistData>
+                )
             }
         })
     }

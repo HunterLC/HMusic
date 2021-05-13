@@ -12,7 +12,25 @@ this is a simple music demo for practicing
 ## 2021-05-13
 1. 新增日推(需登录)
 2. 首页歌单支持个性化推荐(需登录)
+3. 修复首页推荐歌单重复加载的Bug
+```
+//通常分三步
 
+//第一步，定义一个Change的LiveData
+private val _getRecommendPlaylistLiveData = MutableLiveData<Int>().also{
+        it.value = 0   //这种写法有误，不能初始化，否则直接被Transformations.switchMap(_getRecommendPlaylistLiveData)给观察到，然后就会直接调用Repository.getRecommendPlaylist()，造成重复调用
+}
+
+//第二步，观测Change的值，当发生变化时执行指定的函数
+var recommendPlaylistLiveData = Transformations.switchMap(_getRecommendPlaylistLiveData) {
+        Repository.getRecommendPlaylist()
+}
+
+//第三步，编写在Activity或Fragment中调用的函数，用来改变第一步定义的值，达到激活第二步的作用
+fun getRecommendPlaylist(){
+        _getRecommendPlaylistLiveData.value = 0 //_getRecommendPlaylistLiveData发生变化
+}
+```
 ## 2021-05-12
 1. 支持密码登录
 

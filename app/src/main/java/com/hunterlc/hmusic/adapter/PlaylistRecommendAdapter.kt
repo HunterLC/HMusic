@@ -71,10 +71,6 @@ class PlaylistRecommendAdapter(private val playlistRecommendDataResult: ArrayLis
             }
         }
 
-        playlist.copywriter?.let {
-            holder.tvSub.text = it
-        }
-
         holder.tvPlayCount.text = when (playlist.playCount) {
             in 1 until 10_000 -> playlist.playCount.toString()
             in 10_000 until 100_000_000 -> "${playlist.playCount / 10000} 万播放"
