@@ -1,5 +1,7 @@
 package com.hunterlc.hmusic.adapter
 
+import com.hunterlc.hmusic.data.DailyPlaylistData
+
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +14,11 @@ import coil.load
 import coil.size.ViewSizeResolver
 import coil.transform.RoundedCornersTransformation
 import com.hunterlc.hmusic.R
-import com.hunterlc.hmusic.data.RecommendPlaylistData
 import com.hunterlc.hmusic.ui.activity.PlaylistActivity
 import com.hunterlc.hmusic.util.dp
 import com.hunterlc.hmusic.util.dp2px
 
-class PlaylistRecommendAdapter(private val playlistRecommendDataResult: ArrayList<RecommendPlaylistData>) : RecyclerView.Adapter<PlaylistRecommendAdapter.ViewHolder>() {
+class DailyPlaylistAdapter(private val playlistRecommendDataResult: ArrayList<DailyPlaylistData>) : RecyclerView.Adapter<DailyPlaylistAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val clPlaylist: ConstraintLayout = view.findViewById(R.id.clPlaylist)
@@ -51,7 +52,7 @@ class PlaylistRecommendAdapter(private val playlistRecommendDataResult: ArrayLis
         // 获取当前歌单
         val playlist = playlistRecommendDataResult[position]
 
-        holder.ivCover.load(playlist.coverImgUrl) {
+        holder.ivCover.load(playlist.picUrl) {
             size(ViewSizeResolver(holder.ivCover))
             transformations(RoundedCornersTransformation(dp2px(8f).toFloat()))
             crossfade(300)
@@ -63,17 +64,7 @@ class PlaylistRecommendAdapter(private val playlistRecommendDataResult: ArrayLis
         }
         holder.tvTitle.text = playlist.name
 
-        playlist.subscribedCount?.let {
-            holder.tvSub.text = when (it) {
-                in 1 until 10_000 -> playlist.subscribedCount.toString()
-                in 10_000 until 100_000_000 -> "${it.div(10000)} 万收藏"
-                else -> "${it.div(100_000_000)} 亿收藏"
-            }
-        }
-
-        playlist.copywriter?.let {
-            holder.tvSub.text = it
-        }
+        holder.tvSub.text = playlist.copywriter
 
         holder.tvPlayCount.text = when (playlist.playCount) {
             in 1 until 10_000 -> playlist.playCount.toString()

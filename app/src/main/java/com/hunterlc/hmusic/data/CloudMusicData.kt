@@ -91,7 +91,8 @@ data class SongsInnerData(
     @SerializedName("id") val id: Long, //歌曲id
     @SerializedName("ar") val artists: List<ArtistsData>, //歌曲演唱者
     @SerializedName("al") val album: AlbumData, //歌曲所属专辑信息
-    @SerializedName("mv") val mv: Long? //mv的id
+    @SerializedName("mv") val mv: Long?, //mv的id
+    @SerializedName("reason") val reason: String?
 ): Parcelable {
 
     @Parcelize
@@ -111,6 +112,33 @@ data class SongsInnerData(
         @SerializedName("picUrl") val picUrl: String?  //专辑封面
     ): Parcelable
 }
+
+@Keep
+data class DailySongsInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("data") val data: DailySongsData
+)
+
+@Keep
+data class DailySongsData(
+    @SerializedName("dailySongs") val dailySongs: List<SongsInnerData>
+)
+
+@Keep
+data class DailyPlaylistInfo(
+    @SerializedName("code") val code: Int,
+    @SerializedName("recommend") val recommend: List<DailyPlaylistData>
+)
+
+@Keep
+data class DailyPlaylistData(
+    @SerializedName("picUrl") val picUrl: String, // 歌单图片
+    @SerializedName("name") val name: String, // 歌单名称
+    @SerializedName("trackCount") val trackCount: Int, // 歌单歌曲数量
+    @SerializedName("id") val id: Long, // 歌单 id
+    @SerializedName("playcount") val playCount: Long,
+    @SerializedName("copywriter") val copywriter: String
+)
 
 @Keep
 data class SongUrl(
@@ -237,13 +265,14 @@ data class RecommendPlaylistInfo(
 @Keep
 data class RecommendPlaylistData(
     @SerializedName("name") val name: String,
-    @SerializedName("id") var id: Long,
+    @SerializedName("id") val id: Long,
     @SerializedName("coverImgUrl") val coverImgUrl: String,
-    @SerializedName("description") var description: String,
+    @SerializedName("description") val description: String,
     @SerializedName("playCount") val playCount: Long,
-    @SerializedName("tag") var tag: String?,
+    @SerializedName("tag") val tag: String?,
     @SerializedName("trackCount") val trackCount: Int,
-    @SerializedName("subscribedCount") var subscribedCount: Int
+    @SerializedName("subscribedCount") val subscribedCount: Int?,
+    @SerializedName("copywriter") val copywriter: String?
 )
 
 // 歌曲评论

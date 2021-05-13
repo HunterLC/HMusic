@@ -354,6 +354,7 @@ class PlayerActivity : SlideBackActivity() {
                     it?.let {
                         binding.tvName.text = it.name
                         binding.tvSongName?.text = it.name
+                        binding.tvSongName?.setSpeed(-1)
                         binding.tvArtist.text = it.artists.let { artists ->
                             parseArtist(artists as ArrayList<SongsInnerData.ArtistsData>)
                         }

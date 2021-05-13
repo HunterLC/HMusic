@@ -466,21 +466,37 @@
             app:srcCompat="@drawable/ic_back"
             tools:ignore="VectorDrawableCompat" />
 
-        <TextView
+        <com.hunterlc.hmusic.widget.ScrollTextView
             android:id="@+id/tvSongName"
-            android:layout_width="0dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:maxLines="1"
             android:textColor="@color/colorTextForeground"
             android:text="@string/music"
             android:textSize="16sp"
             android:visibility="invisible"
+            android:textAlignment="center"
             android:gravity="center_horizontal"
             app:layout_constraintBottom_toTopOf="@+id/tvArtistName"
             app:layout_constraintEnd_toStartOf="@+id/ivShare"
             app:layout_constraintStart_toEndOf="@+id/ivBack"
             app:layout_constraintTop_toTopOf="@+id/tvArtistName" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvSongName"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:textColor="@color/colorTextForeground"-->
+<!--            android:text="@string/music"-->
+<!--            android:textSize="16sp"-->
+<!--            android:visibility="invisible"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/tvArtistName"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/ivShare"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/ivBack"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/tvArtistName" />-->
 
         <TextView
             android:id="@+id/tvArtistName"

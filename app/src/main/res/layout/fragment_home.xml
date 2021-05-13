@@ -46,7 +46,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ivTopList"
+                    android:id="@+id/ivPersonalFM"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_marginTop="8dp"
@@ -58,7 +58,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/ivTopList1"
+                    android:id="@+id/ivTopList"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_marginTop="8dp"
@@ -66,17 +66,17 @@
                     android:src="@drawable/ic_top_list"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/ivTopList"
+                    app:layout_constraintStart_toEndOf="@+id/ivPersonalFM"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/ivTopList2"
+                    android:id="@+id/ivRecommend"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_marginTop="8dp"
                     android:padding="6dp"
                     android:src="@drawable/ic_daily_recommend"
-                    app:layout_constraintEnd_toStartOf="@+id/ivTopList"
+                    app:layout_constraintEnd_toStartOf="@+id/ivPersonalFM"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -94,7 +94,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivTopList" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivPersonalFM" />
                 <TextView
                     android:id="@+id/tvTopList1"
                     android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/tvTopList"
-                    app:layout_constraintTop_toBottomOf="@+id/ivTopList1" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivTopList" />
 
                 <TextView
                     android:id="@+id/tvTopList2"
@@ -123,7 +123,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvTopList"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivTopList2" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivRecommend" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

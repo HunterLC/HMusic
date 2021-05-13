@@ -15,23 +15,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.ViewSizeResolver
-import coil.transform.RoundedCornersTransformation
 import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.R
-import com.hunterlc.hmusic.data.*
+import com.hunterlc.hmusic.data.SongsInnerData
 import com.hunterlc.hmusic.ui.activity.PlayerActivity
-import com.hunterlc.hmusic.ui.activity.PlaylistActivity
-import com.hunterlc.hmusic.ui.activity.SplashActivity
 import com.hunterlc.hmusic.ui.activity.VideoActivity
 import com.hunterlc.hmusic.util.ConfigUtil
-import com.hunterlc.hmusic.util.dp2px
+import com.hunterlc.hmusic.widget.ScrollTextView
 
-/**
- * 歌适配器
- */
-class SongDataAdapter
+class DailySongsAdapter
 @JvmOverloads
-constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDataAdapter.ViewHolder>(DiffCallback) {
+constructor(private val activity: Activity): ListAdapter<SongsInnerData, DailySongsAdapter.ViewHolder>(DiffCallback) {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -44,12 +38,13 @@ constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDat
         val ivMore: ImageView = view.findViewById(R.id.ivMore)
         val ivHq: ImageView = view.findViewById(R.id.ivHq)
         val ivMv: ImageView = view.findViewById(R.id.ivMv)
+        val tvReason: TextView = view.findViewById(R.id.tvReason)
 
         val isAnimation = MyApplication.mmkv.decodeBool(ConfigUtil.PLAYLIST_SCROLL_ANIMATION, true)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        LayoutInflater.from(parent.context).inflate(R.layout.layout_detail_playlist, parent, false).apply {
+        LayoutInflater.from(parent.context).inflate(R.layout.recycler_daily_songs_item, parent, false).apply {
             return ViewHolder(this)
         }
     }
@@ -70,6 +65,7 @@ constructor(private val activity: Activity): ListAdapter<SongsInnerData, SongDat
 
             tvNumber.text = (position + 1).toString()
             tvName.text = song.name //  + song.neteaseInfo?.pl?.toString()
+            tvReason.text = song.reason
             val artists = song.artists
             if (artists.isNullOrEmpty()) {
                 tvArtist.text = "未知"

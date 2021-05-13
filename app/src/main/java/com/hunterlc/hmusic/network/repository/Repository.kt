@@ -235,6 +235,39 @@ object Repository {
         }
     }
 
+    /***
+     * 日推, 需登录
+     */
+    fun getDailySongs(cookie: String) = fire(Dispatchers.IO){
+        val dailySongsInfo = CloudMusicNetwork.getDailySongs(cookie)
+
+        if (dailySongsInfo.code == 200){
+            LogUtil.e("Repository-getDailySongs","获取日推成功")
+            Result.success(dailySongsInfo.data)
+        } else {
+            LogUtil.e("Repository-getDailySongs","需要登录")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
+    /***
+     * 日推歌单, 需登录
+     */
+    fun getRecommendDaily(cookie: String) = fire(Dispatchers.IO){
+        val dailyPlaylistInfo = CloudMusicNetwork.getRecommendDaily(cookie)
+
+        if (dailyPlaylistInfo.code == 200){
+            LogUtil.e("Repository-getRecommendDaily","获取日推成功")
+            Result.success(dailyPlaylistInfo.recommend)
+        } else {
+            LogUtil.e("Repository-getRecommendDaily","需要登录")
+            Result.failure(RuntimeException("response of code is not 200"))
+        }
+    }
+
+    /***
+     * 获取评论
+     */
     private const val PAGE_SIZE = 20
     private val commentService = CommentService.create()
     fun getCommentsPagingData(type: Int, id: Long, sortType: Int): Flow<PagingData<CommentInnerData>> {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,10 +15,13 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.adapter.BannerImageAdapter
+import com.hunterlc.hmusic.adapter.DailyPlaylistAdapter
 import com.hunterlc.hmusic.adapter.PlaylistRecommendAdapter
+import com.hunterlc.hmusic.data.DailyPlaylistData
 import com.hunterlc.hmusic.data.RecommendPlaylistData
 import com.hunterlc.hmusic.databinding.FragmentHomeBinding
 import com.hunterlc.hmusic.databinding.FragmentMyBinding
+import com.hunterlc.hmusic.ui.activity.DailySongsActivity
 import com.hunterlc.hmusic.ui.activity.TopListActivity
 import com.hunterlc.hmusic.ui.base.BaseFragment
 import com.hunterlc.hmusic.ui.viewmodel.HomeFragmentViewModel
@@ -46,13 +50,38 @@ class HomeFragment: BaseFragment() {
     }
     override fun initView() {
         homeFragmentViewModel.getBanner()
-        homeFragmentViewModel.getRecommendPlaylist()
+
+        if (MyApplication.userManager.hasCookie()){
+            homeFragmentViewModel.getDailyPlaylist()
+        } else {
+            homeFragmentViewModel.getRecommendPlaylist()
+        }
+
     }
 
     override fun initListener() {
-        _binding?.ivTopList1?.setOnClickListener {
+        _binding?.ivTopList?.setOnClickListener {
             val intent = Intent(MyApplication.context,TopListActivity::class.java)
             startActivity(intent)
+        }
+
+        _binding?.ivRecommend?.setOnClickListener {
+            if (MyApplication.userManager.hasCookie()){
+                val intent = Intent(MyApplication.context, DailySongsActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(MyApplication.context,"未使用密码登录，暂不支持此功能",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        _binding?.ivPersonalFM?.setOnClickListener {
+//            if (MyApplication.userManager.hasCookie()){
+//                val intent = Intent(MyApplication.context,TopListActivity::class.java)
+//                startActivity(intent)
+//            } else {
+//                Toast.makeText(MyApplication.context,"未使用密码登录，暂不支持此功能",Toast.LENGTH_SHORT).show()
+//            }
         }
     }
 
@@ -62,6 +91,7 @@ class HomeFragment: BaseFragment() {
                 topMargin = it + ((56 + 4) * mainViewModel.scale.value!! + 0.5f).toInt()
             }
         })
+
         homeFragmentViewModel.bannerInfoLiveData.observe(this, Observer {  result ->
             val banners = result.getOrNull()
             if (banners != null){
@@ -79,6 +109,7 @@ class HomeFragment: BaseFragment() {
             }
 
         })
+
         homeFragmentViewModel.recommendPlaylistLiveData.observe(this, Observer { result ->
             val recommendPlaylistData = result.getOrNull()
             if (recommendPlaylistData != null){
@@ -87,7 +118,18 @@ class HomeFragment: BaseFragment() {
                     binding.rvPlaylistRecommend.adapter = PlaylistRecommendAdapter(
                         recommendPlaylistData as ArrayList<RecommendPlaylistData>
                     )
+                }
+            }
+        })
 
+        homeFragmentViewModel.dailyPlaylistLiveData.observe(this, Observer { result ->
+            val dailyPlaylistData = result.getOrNull()
+            if (dailyPlaylistData != null){
+                runOnMainThread {
+                    binding.rvPlaylistRecommend.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
+                    binding.rvPlaylistRecommend.adapter = DailyPlaylistAdapter(
+                        dailyPlaylistData as ArrayList<DailyPlaylistData>
+                    )
                 }
             }
         })

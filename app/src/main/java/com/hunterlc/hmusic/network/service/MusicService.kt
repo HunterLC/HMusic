@@ -1,9 +1,6 @@
 package com.hunterlc.hmusic.network.service
 
-import com.hunterlc.hmusic.data.DetailPlaylistData
-import com.hunterlc.hmusic.data.LyricInfo
-import com.hunterlc.hmusic.data.MusicData
-import com.hunterlc.hmusic.data.SongUrl
+import com.hunterlc.hmusic.data.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -25,6 +22,10 @@ interface MusicService {
     //根据歌曲id获取歌词
     @GET("/lyric")
     fun getLyricById(@Query("id") id: Long): Call<LyricInfo>
+
+    //日推, 需登录
+    @GET("/recommend/songs")
+    fun getDailySongs( @Query("cookie") cookie: String): Call<DailySongsInfo>
 
    // val a = URLEncoder.encode()
 }

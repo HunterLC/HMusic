@@ -51,9 +51,14 @@ object PlayQueue {
                 MyApplication.appDatabase.playQueueDao().deleteById(it.songData.id)
             }
             currentQueue.value?.let {
-                for (song in it) {
+                val iterator = it.iterator();
+                while (iterator.hasNext()){
+                    val song = iterator.next();
                     MyApplication.appDatabase.playQueueDao().insert(PlayQueueData(song))
                 }
+//                for (song in it) {
+//                    MyApplication.appDatabase.playQueueDao().insert(PlayQueueData(song))
+//                }
             }
         }
     }

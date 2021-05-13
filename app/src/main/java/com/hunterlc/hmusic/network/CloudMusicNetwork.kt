@@ -56,6 +56,10 @@ object CloudMusicNetwork {
     suspend fun getRecommendPlaylist() = playListService.getRecommendPlaylist().await()
     //获取榜单
     suspend fun getToplist() = playListService.getToplist().await()
+    //日推, 需登录
+    suspend fun getDailySongs(cookie: String) = musicService.getDailySongs(cookie).await()
+    //日推歌单, 需登录
+    suspend fun getRecommendDaily(cookie: String) = playListService.getRecommendDaily(cookie).await()
 
 
     //借助协程技术
