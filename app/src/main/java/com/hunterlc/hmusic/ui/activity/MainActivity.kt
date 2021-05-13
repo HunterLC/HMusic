@@ -240,6 +240,7 @@ class MainActivity : BaseActivity() {
             }
             itemExit.setOnClickListener {
                 MyApplication.mmkv.encode(ConfigUtil.UID,0L)
+                MyApplication.userManager.setCloudMusicCookie("")
                 mainViewModel.setUserId()
                 MyApplication.activityManager.startSplashActivity(this@MainActivity)
                 finish()
