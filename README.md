@@ -10,7 +10,8 @@ this is a simple music demo for practicing
 
 # 更新日志
 ## 2022-01-16
-1. 首页动态模糊Banner
+1. 首页动态模糊Banner  
+![动态模糊Banner示意图](https://github.com/HunterLC/HMusic/blob/main/image/banner.gif)
 
 
 ## 2021-05-13
