@@ -25,19 +25,36 @@
             android:paddingBottom="4dp"
             tools:ignore="MissingConstraints">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clUser"
                 android:layout_width="match_parent"
                 android:layout_height="160dp">
 
-                <com.youth.banner.Banner
-                    android:id="@+id/banner"
+                <ImageView
+                    android:id="@+id/ivTopBackground"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:padding="10dp"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="match_parent"/>
+
+
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:padding="10dp"
+                        android:layout_marginTop="80dp"/>
+
+                </eightbitlab.com.blurview.BlurView>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clTopList"

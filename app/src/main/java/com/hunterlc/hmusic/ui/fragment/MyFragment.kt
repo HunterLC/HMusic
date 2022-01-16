@@ -116,7 +116,7 @@ class MyFragment: BaseFragment() {
 
         mainViewModel.statusBarHeight.observe(viewLifecycleOwner, Observer {
             (binding.clTop.layoutParams as LinearLayout.LayoutParams).apply {
-                topMargin = it + ((56 + 8) * mainViewModel.scale.value!! + 0.5f).toInt()
+                topMargin = it + ((56 + 1) * mainViewModel.scale.value!! + 0.5f).toInt()
             }
         })
 

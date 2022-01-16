@@ -1,6 +1,8 @@
 package com.hunterlc.hmusic.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import coil.load
+import coil.size.ViewSizeResolver
+import coil.transform.BlurTransformation
+import coil.transform.CircleCropTransformation
+import coil.transform.RoundedCornersTransformation
+import com.bumptech.glide.Glide
 import com.hunterlc.hmusic.MyApplication
+import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.adapter.BannerImageAdapter
 import com.hunterlc.hmusic.adapter.DailyPlaylistAdapter
 import com.hunterlc.hmusic.adapter.PlaylistRecommendAdapter
@@ -30,8 +41,12 @@ import com.hunterlc.hmusic.util.LogUtil
 import com.hunterlc.hmusic.util.runOnMainThread
 import com.youth.banner.config.BannerConfig
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.listener.OnPageChangeListener
 import com.youth.banner.transformer.*
+import eightbitlab.com.blurview.RenderScriptBlur
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 class HomeFragment: BaseFragment() {
@@ -51,8 +66,17 @@ class HomeFragment: BaseFragment() {
     }
 
     override fun initView() {
+        //用法参见https://github.com/Dimezis/BlurView
+        val radius = 20f
+        val decorView: View = requireActivity().window.decorView
+        val windowBackground: Drawable = decorView.background
+        binding.blurTop.setupWith(decorView.findViewById(R.id.clTheme))
+            .setFrameClearDrawable(windowBackground)
+            .setBlurAlgorithm(RenderScriptBlur(this.context))
+            .setBlurRadius(radius)
+            .setHasFixedTransformationMatrix(false)
+            .setBlurAutoUpdate(true)
         homeFragmentViewModel.getBanner()
-
         if (MyApplication.userManager.hasCookie()){
             LogUtil.e("hasCookiehasCookiehasCookie","hasCookie")
             homeFragmentViewModel.getDailyPlaylist()
@@ -88,10 +112,13 @@ class HomeFragment: BaseFragment() {
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun initObserver() {
         mainViewModel.statusBarHeight.observe(viewLifecycleOwner, Observer {
             (binding.clUser.layoutParams as LinearLayout.LayoutParams).apply {
-                topMargin = it + ((56 + 4) * mainViewModel.scale.value!! + 0.5f).toInt()
+                //topMargin = it + ((56 + 4) * mainViewModel.scale.value!! + 0.5f).toInt()
+                height = it + ((56 + 160 + 1) * mainViewModel.scale.value!! + 0.5f).toInt()
+                //topMargin = 0
             }
         })
 
@@ -102,14 +129,41 @@ class HomeFragment: BaseFragment() {
                     imageUrls.add(item.pic)
                 }
                 val adapter = BannerImageAdapter(imageUrls)
-                banner?.let {
+                binding.banner.let {
                     it.addBannerLifecycleObserver(this)
                     it.indicator = CircleIndicator(MyApplication.context)
                     it.setBannerRound(20f)
+                    //it.setBannerGalleryMZ(60)
                     it.setPageTransformer(ZoomOutPageTransformer())
                     it.adapter = adapter
+                    it.addOnPageChangeListener(object: OnPageChangeListener {
+                        override fun onPageScrollStateChanged(state: Int) {
+                        }
+
+                        override fun onPageSelected(position: Int) {
+                            // 背景图动态改变
+                            binding.ivTopBackground.load(banners?.get(position)?.pic){
+                                crossfade(true)
+                                crossfade(700)
+                                transformations(RoundedCornersTransformation())
+                                size(ViewSizeResolver(binding.ivTopBackground))
+                            }
+                        }
+
+                        override fun onPageScrolled(
+                            position: Int,
+                            positionOffset: Float,
+                            positionOffsetPixels: Int
+                        ) {
+                        }
+                    })
+                }
+                binding.ivTopBackground.load(banners?.get(0)?.pic){
+                    transformations(RoundedCornersTransformation())
+                    size(ViewSizeResolver(binding.ivTopBackground))
                 }
             }
+
 
         })
 

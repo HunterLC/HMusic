@@ -1,5 +1,6 @@
 package com.hunterlc.hmusic.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -27,6 +28,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import coil.size.ViewSizeResolver
 import coil.transform.CircleCropTransformation
@@ -123,14 +125,14 @@ class MainActivity : BaseActivity() {
 
         //初始化两块毛玻璃特效
         //用法参见https://github.com/Dimezis/BlurView
-        val radius = 20f
+        val radius = 22f
         val decorView: View = window.decorView
         val windowBackground: Drawable = decorView.background
-        binding.blurViewTop.setupWith(decorView.findViewById(R.id.clTheme))
-            .setFrameClearDrawable(windowBackground)
-            .setBlurAlgorithm(RenderScriptBlur(this))
-            .setBlurRadius(radius)
-            .setHasFixedTransformationMatrix(true)
+//        binding.blurViewTop.setupWith(decorView.findViewById(R.id.clTheme))
+//            .setFrameClearDrawable(windowBackground)
+//            .setBlurAlgorithm(RenderScriptBlur(this))
+//            .setBlurRadius(radius)
+//            .setHasFixedTransformationMatrix(true)
         binding.blurViewPlay.setupWith(decorView.findViewById(R.id.clTheme))
             .setFrameClearDrawable(windowBackground)
             .setBlurAlgorithm(RenderScriptBlur(this))
@@ -171,6 +173,21 @@ class MainActivity : BaseActivity() {
 
         //对应两个tab创建两个fragment
         binding.viewPager2.offscreenPageLimit = 2
+        binding.viewPager2.registerOnPageChangeCallback(object:ViewPager2.OnPageChangeCallback() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            override fun onPageSelected(position: Int) {
+                when(position){
+                    0 -> binding.titleBar.background = context.getDrawable(R.drawable.background_transparency)
+                    1 -> binding.titleBar.background = context.getDrawable(R.drawable.background_transparency)
+                }
+//                if (position ==0){
+//                    Toast.makeText(context,position.toString(),Toast.LENGTH_SHORT).show()
+//                }else{
+//                    Toast.makeText(context,position.toString(),Toast.LENGTH_SHORT).show()
+//                }
+                super.onPageSelected(position)
+            }
+        })
         binding.viewPager2.adapter = object : FragmentStateAdapter(this) {
             // 2 个页面
             override fun getItemCount(): Int {

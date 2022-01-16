@@ -9,6 +9,10 @@ this is a simple music demo for practicing
 - [x] 主页面
 
 # 更新日志
+## 2022-01-16
+1. 首页动态模糊Banner
+
+
 ## 2021-05-13
 1. 新增日推(需登录)
 2. 首页歌单支持个性化推荐(需登录)
