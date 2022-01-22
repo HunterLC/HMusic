@@ -33,11 +33,11 @@ object CloudMusicNetwork {
     //登录并获取用户信息
     suspend fun loginByCellphone(phone: String, countrycode: Int, md5_password: String) = loginService.loginByCellphone(phone, countrycode, md5_password).await()
     //根据歌单id获取其中所有的歌曲（因为接口原因，这里只能获取所有歌的id）
-    suspend fun getMusicsByPlaylistId(id: Long) = musicService.getMusicsByPlaylistId(id).await()
+    suspend fun getMusicsByPlaylistId(id: Long, cookie: String) = musicService.getMusicsByPlaylistId(id,cookie).await()
     //根据歌曲id获取其中所有的歌曲的信息
     suspend fun getMusicDetail(ids: String) = musicService.getMusicDetail(ids).await()
     //根据歌曲id获取其播放地址URL
-    suspend fun getSongUrlById(id: String) = musicService.getSongUrlById(id).await()
+    suspend fun getSongUrlById(id: String, cookie: String) = musicService.getSongUrlById(id, cookie).await()
     //根据歌曲id获取歌词
     suspend fun getLyricById(id: Long) = musicService.getLyricById(id).await()
     //根据id获取用户信息

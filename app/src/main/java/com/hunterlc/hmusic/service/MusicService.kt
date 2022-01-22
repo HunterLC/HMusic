@@ -21,6 +21,7 @@ import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.R
 import com.hunterlc.hmusic.broadcast.BecomingNoisyReceiver
 import com.hunterlc.hmusic.data.SongsInnerData
+import com.hunterlc.hmusic.network.service.ServiceSongUrl
 import com.hunterlc.hmusic.service.base.BaseMediaService
 import com.hunterlc.hmusic.ui.activity.MainActivity
 import com.hunterlc.hmusic.ui.activity.PlayerActivity
@@ -289,20 +290,36 @@ class MusicService : BaseMediaService() {
                 if (!InternetStateUtil.isWifi(MyApplication.context) && !MyApplication.mmkv.decodeBool(ConfigUtil.PLAY_ON_MOBILE, false)) {
                     Toast.makeText(this@MusicService,"移动网络下已禁止播放，请在设置中打开选项（注意流量哦）",Toast.LENGTH_SHORT).show()
                 } else {
-                    val it = "https://music.163.com/song/media/outer/url?id=${song.id}.mp3"
-                    if ( it != null){
-                        //val url = it.getOrNull()?.get(0)?.url
-                        setDataSource(it)
+                    ServiceSongUrl.getSongUrl(song, MyApplication.userManager.getCloudMusicCookie()) {
+                        runOnMainThread {
+                            if (it == null || it is String && it.isEmpty()) {
+                                Toast.makeText(this@MusicService,"播放错误，开始播放下一首",Toast.LENGTH_SHORT).show()
+                                playNext()
+                                return@runOnMainThread
+                            }
+                            when (it) {
+                                is String -> {
+                                    try {
+                                        setDataSource(it)
+                                    } catch (e: Exception) {
+                                        onError(mediaPlayer, -1, 0)
+                                        return@runOnMainThread
+                                    }
+                                }
+                                else -> {
+                                    return@runOnMainThread
+                                }
+                            }
+                            // 测试1433934518
+                            setOnPreparedListener(this@MusicController) // 歌曲准备完成的监听
+                            setOnCompletionListener(this@MusicController) // 歌曲完成后的回调
+                            setOnErrorListener(this@MusicController)
+                            prepareAsync()
+
+                        }
                     }
-                    setOnPreparedListener(this@MusicController) // 歌曲准备完成的监听
-                    setOnCompletionListener(this@MusicController) // 歌曲完成后的回调
-                    setOnErrorListener(this@MusicController)
-                    prepareAsync()
                 }
-
-
             }
-
         }
 
         private fun sendMusicBroadcast() {

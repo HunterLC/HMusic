@@ -1,6 +1,7 @@
 package com.hunterlc.hmusic.ui.viewmodel
 
 import androidx.lifecycle.*
+import com.hunterlc.hmusic.MyApplication
 import com.hunterlc.hmusic.network.repository.Repository
 
 class PlaylistViewModel : ViewModel() {
@@ -11,7 +12,7 @@ class PlaylistViewModel : ViewModel() {
 
     //歌单里歌曲id
     var playlistMusicIdLiveData = Transformations.switchMap(id) { id ->
-        Repository.getMusicsByPlaylistId(id)
+        Repository.getMusicsByPlaylistId(id, MyApplication.userManager.getCloudMusicCookie())
     }
 
 

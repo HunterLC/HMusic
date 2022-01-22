@@ -54,8 +54,8 @@ object Repository {
     /***
      * 根据歌单id获取其中所有的歌曲（因为接口原因，这里只能获取所有歌的id）
      */
-    fun getMusicsByPlaylistId(id: Long) = fire(Dispatchers.IO){
-        val detailPlaylistData = CloudMusicNetwork.getMusicsByPlaylistId(id)
+    fun getMusicsByPlaylistId(id: Long, cookie: String) = fire(Dispatchers.IO){
+        val detailPlaylistData = CloudMusicNetwork.getMusicsByPlaylistId(id,cookie)
 
         if (detailPlaylistData.code == 200){
             LogUtil.e("Repository-getMusicsByPlaylistId","获取歌单详情成功")
@@ -84,8 +84,8 @@ object Repository {
     /***
      * 根据歌曲id获取其播放地址URL
      */
-    fun getSongUrlById(id: String) = fire(Dispatchers.IO){
-        val songUrl = CloudMusicNetwork.getSongUrlById(id)
+    fun getSongUrlById(id: String, cookie: String) = fire(Dispatchers.IO){
+        val songUrl = CloudMusicNetwork.getSongUrlById(id,cookie)
         if (songUrl.code == 200){
             LogUtil.e("Repository-getSongUrlById","根据歌曲id获取其播放地址URL成功")
             //检测部分：部分用户反馈获取的 url 会 403,hwaphon找到的解决方案是当获取到音乐的 id 后，将 https://music.163.com/song/media/outer/url?id=id.mp3 以 src 赋予 Audio 即可
@@ -93,7 +93,7 @@ object Repository {
                 if (songData.url == "")
                     songData.url = "https://music.163.com/song/media/outer/url?id=${songData.id}.mp3"
             }
-            Result.success(songUrl.data)
+            Result.success(songUrl.data[0].url)
         } else {
             LogUtil.e("Repository-getSongUrlById","根据歌曲id获取其播放地址URL失败")
             Result.failure(RuntimeException("response of code is not 200"))

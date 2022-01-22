@@ -3,12 +3,30 @@ this is a simple music demo for practicing
 
 # 写在最前面的话
 + 我是菜鸡
-+ 开发进度
++ 开发进度(部分功能显然需要真实登录才行，UID登录部分功能受限)
 - [x] 启动页
 - [x] 登录页
 - [x] 主页面
+- [x] MV播放
+- [x] 歌曲播放
+- [x] 评论区查看
+- [x] 搜索
+- [x] 日推
+
+# 界面展示
+|序号|说明|示意图|
+|-|-|-|
+|1|启动页|![启动页示意图](https://github.com/HunterLC/HMusic/blob/main/image/启动页.gif)|
+|2|首页|![首页示意图](https://github.com/HunterLC/HMusic/blob/main/image/首页.gif)|
+|3|音乐播放|![音乐播放示意图](https://github.com/HunterLC/HMusic/blob/main/image/音乐播放.gif)|
+|4|横屏适配|![横屏适配示意图](https://github.com/HunterLC/HMusic/blob/main/image/横屏适配.gif)|
+|5|歌曲评论|![歌曲评论示意图](https://github.com/HunterLC/HMusic/blob/main/image/歌曲评论.gif)|
+|6|MV播放|![MV播放示意图](https://github.com/HunterLC/HMusic/blob/main/image/MV播放.gif)|
 
 # 更新日志
+## 2022-01-22
+1. 解锁VIP歌曲，前提是你得是VIP用户  
+
 ## 2022-01-16
 1. 首页动态模糊Banner  
 ![动态模糊Banner示意图](https://github.com/HunterLC/HMusic/blob/main/image/banner.gif)

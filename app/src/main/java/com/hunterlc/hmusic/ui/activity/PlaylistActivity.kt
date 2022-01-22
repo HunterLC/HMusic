@@ -164,7 +164,7 @@ class PlaylistActivity: BaseActivity() {
                         ivBackground.load(playlistDetail.coverImgUrl){
                             allowHardware(false)
                             crossfade(true)
-                            size(ViewSizeResolver(ivCover))
+                            size(ViewSizeResolver(ivBackground))
                         }
                         tvName.text = playlistDetail.name
                         tvDescription.text = playlistDetail.description
