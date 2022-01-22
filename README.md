@@ -15,7 +15,7 @@ this is a simple music demo for practicing
 
 # 界面展示
 |序号|说明|示意图|
-|-|-|-|
+|:-:|-|:-:|
 |1|启动页|![启动页示意图](https://github.com/HunterLC/HMusic/blob/main/image/启动页.gif)|
 |2|首页|![首页示意图](https://github.com/HunterLC/HMusic/blob/main/image/首页.gif)|
 |3|音乐播放|![音乐播放示意图](https://github.com/HunterLC/HMusic/blob/main/image/音乐播放.gif)|
