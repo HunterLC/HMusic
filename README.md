@@ -3,6 +3,8 @@ this is a simple music demo for practicing
 
 # 写在最前面的话
 + 我是菜鸡
++ 项目基于[网易云音乐 API](https://github.com/Binaryify/NeteaseCloudMusicApi)项目和[Dso Music](https://github.com/Moriafly/DsoMusic)项目
++ 源码**仅供学习**，**请勿传播**软件安装包。开源链接、源码、介绍及应用安装包未经开发者允许**不接受**他人的任何转发（发布到其他应用、推广网站、公众号、博客等）。软件内**不提供歌曲下载**，只提供在线音乐试听，请支持正版音乐。**基于本开源项目的其他开发者项目、软件所引发的问题，依据 GPL 3 免责协议本开发者不负责任**。
 + 开发进度(部分功能显然需要真实登录才行，UID登录部分功能受限)
 - [x] 启动页
 - [x] 登录页
