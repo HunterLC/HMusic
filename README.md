@@ -1,6 +1,11 @@
 # HMusic
 this is a simple music demo for practicing
 
+![](https://img.shields.io/badge/compileSdkVersion-30-red)
+![](https://img.shields.io/badge/Android%20Gradle%20Plugin%20Version-4.1.2-brightgreen)
+![](https://img.shields.io/badge/Gradle%20Version-6.5-yellow)
+![](https://img.shields.io/badge/Kotlin%20Version-1.4.32-blue)
+
 # 写在最前面的话
 + 我是菜鸡
 + 项目基于[网易云音乐 API](https://github.com/Binaryify/NeteaseCloudMusicApi)项目和[Dso Music](https://github.com/Moriafly/DsoMusic)项目
